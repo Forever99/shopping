@@ -63,7 +63,7 @@ a:hover {
 			<select name="phpddt"   onchange="window.open(this.options[this.selectedIndex].value,'_top')"   size=1>
 				    <option value="">请选择</option>
 <!-- 					<option value='${request.Context}/jsps/userImfo/main.jsp' selected>卖家中心</option> -->
-					<option value='$${pageContext.request.contextPath}/jsps/userImfo/main.jsp' selected>卖家中心</option>
+					<option value='${pageContext.request.contextPath}/jsps/userImfo/main.jsp' selected>卖家中心</option>
 					<option value='${pageContext.request.contextPath}/jsps/userImfo/main.jsp'>免费开店</option>
 					<option value='${pageContext.request.contextPath}/jsps/userImfo/main.jsp'>已卖出宝贝</option>
 					<option value='${pageContext.request.contextPath}/jsps/userImfo/main.jsp'>出售中宝贝</option>
