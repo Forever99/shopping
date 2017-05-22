@@ -16,6 +16,7 @@ import cn.edu.zhku.shopping.user.service.UserService;
 import cn.edu.zhku.shopping.user.service.exception.UserException;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.servlet.BaseServlet;
+
 /**
  * 用户模块控制层
  * @author lenovo
@@ -134,7 +135,7 @@ public class UserServlet extends BaseServlet {
 		 * 4. 保存成功信息，转发到msg.jsp显示！
 		 */
 		req.setAttribute("code", "success");
-		req.setAttribute("msg", "注册功能，请马上到邮箱激活！");
+		req.setAttribute("msg", "注册成功，请选择返回登录页面或者主页！");
 		return "f:/jsps/msg.jsp";
 	}
 	
@@ -340,6 +341,6 @@ public class UserServlet extends BaseServlet {
 	public String quit(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.getSession().invalidate();
-		return "r:/jsps/main.jsp";
+		return "r:/jsps/user/login.jsp";
 	}
 }

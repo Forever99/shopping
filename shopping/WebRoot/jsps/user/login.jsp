@@ -43,7 +43,7 @@
             <div class="loginTopDiv">
               <span class="loginTop">用户登录</span>
               <span>
-                <a href="<c:url value='/jsps/user/regist.jsp'/>" class="registBtn"></a>
+                <a href="<c:url value='/jsps/user/regist.jsp'/>" class="regist">没有账号，请先注册！</a>
               </span>
             </div>
             <div>
