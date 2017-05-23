@@ -10,8 +10,8 @@ body,ul, li, p,img, div { margin: 0; padding: 0; list-style-type: none; font-siz
 .price_n {color: #c30; font-weight: bold; padding-right: 10px; font-family: Arial; }
 .price_s {color: #c30; font-family: Arial; }
 .price_r {color: #878787; text-decoration: line-through; padding-right: 10px; font-family: Arial; }
-#bookname {text-decoration:underline; color:#555555; display: block; overflow: hidden; width: 200px; font-family: Arial; }
-#bookname:hover {color:#FF6600; }
+#goodsname {text-decoration:underline; color:#555555; display: block; overflow: hidden; width: 200px; font-family: Arial; }
+#goodsname:hover {color:#FF6600; }
 .inner a {color: #018BD3;}
 .inner a:hover {color:#FF6600; }
 .inner a:VISITED {color:#018BD3;}

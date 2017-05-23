@@ -1,4 +1,4 @@
-package cn.edu.zhku.shopping.goods.domain.goods;
+package cn.edu.zhku.shopping.goods.domain;
 
 import cn.edu.zhku.shopping.category.domain.Category;
 import cn.edu.zhku.shopping.store.domain.Store;
@@ -18,6 +18,7 @@ public class Goods {
 	private double discount;//折扣
 	private String description;//商品描述
 	private String pro_area;//商品产地
+	private String units;//商品规格
 	
 	private Category category;//所属分类
 	
@@ -113,6 +114,15 @@ public class Goods {
 	public void setStore(Store store) {
 		this.store = store;
 	}
+
+	public String getUnits() {
+		return units;
+	}
+
+	public void setUnits(String units) {
+		this.units = units;
+	}
+	
 	
 	
 	
