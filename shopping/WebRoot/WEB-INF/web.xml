@@ -27,6 +27,11 @@
     <servlet-name>CategoryServlet</servlet-name>
     <servlet-class>cn.edu.zhku.shopping.category.web.servlet.CategoryServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GoodsServlet</servlet-name>
+    <servlet-class>cn.edu.zhku.shopping.goods.web.servlet.GoodsServlet</servlet-class>
+  </servlet>
+
 
     <servlet-mapping>
     <servlet-name>VerifyCodeServlet</servlet-name>
@@ -35,6 +40,10 @@
   <servlet-mapping>
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/CategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GoodsServlet</servlet-name>
+    <url-pattern>/GoodsServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
