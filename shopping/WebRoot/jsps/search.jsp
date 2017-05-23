@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>按图名查询</title>
+    <title>按名称查询</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -45,12 +45,11 @@
   </head>
   
   <body>
-    <form action="<c:url value='/BookServlet'/>" method="get" target="body" id="form1">
-    	<input type="hidden" name="method" value="findByBname"/>
-    	<input type="text" name="bname"/>
+    <form action="<c:url value='/GoodsServlet'/>" method="get" target="body" id="form1">
+    	<input type="hidden" name="method" value="findByGname"/>
+    	<input type="text" name="gname"/>
     	<span>
     		<a href="javascript:document.getElementById('form1').submit();"><img align="top" border="0" src="../images/btn_search.jpg"/></a>
-    		<a href="<c:url value='/jsps/gj.jsp'/>" style="font-size: 10pt; color: #404040;" target="body">高级搜索</a>
     	</span>
     </form>
     

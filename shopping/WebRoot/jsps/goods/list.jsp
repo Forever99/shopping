@@ -29,18 +29,17 @@
 <c:forEach items="${pb.beanList }" var="goods">
   <li>
   <div class="inner">
-    <a class="pic" href="<c:url value='/GoodsServlet?method=load&bid=${goods.gid }'/>"><img src="<c:url value='/${goods.image_b }'/>" border="0"/></a>
+    <a class="pic" href="<c:url value='/GoodsServlet?method=load&gid=${goods.gid }'/>"><img src="<c:url value='/${goods.image_b }'/>" border="0"/></a>
     <p class="price">
 		<span class="price_n">&yen;${goods.currPrice }</span>
 		<span class="price_r">&yen;${goods.price }</span>
 		(<span class="price_s">${goods.discount }折</span>)
 	</p>
-	<p><a id="goodsname" title="${goods.gname }" href="<c:url value='/goodsServlet?method=load&gid=${goods.gid }'/>">${goods.gname }</a></p>
+	<p><a id="goodsname" title="${goods.gname }" href="<c:url value='/GoodsServlet?method=load&gid=${goods.gid }'/>">${goods.gname }</a></p>
 	
-		<p>${goods.description}</p>
-		<p>${goods.pro_area}</p>
-		<p>${goods.pro_area}</p>
-		<p>${goods.store.sname}</p>
+		<p>商品描述： ${goods.description }</p>
+		<p>商品产地： ${goods.pro_area }</p>
+		<p>${goods.store.sname }</p>
 	
 
 	<%-- url标签会自动对参数进行url编码 --%>

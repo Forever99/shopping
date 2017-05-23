@@ -3,15 +3,20 @@ package cn.edu.zhku.shopping.goods.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import cn.edu.zhku.shopping.goods.domain.goods.Goods;
+import cn.edu.zhku.shopping.category.domain.Category;
+import cn.edu.zhku.shopping.goods.domain.Goods;
 import cn.edu.zhku.shopping.pager.Expression;
 import cn.edu.zhku.shopping.pager.PageBean;
 import cn.edu.zhku.shopping.pager.PageConstants;
+import cn.edu.zhku.shopping.store.domain.Store;
+import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
 
 
@@ -39,6 +44,7 @@ public class GoodsDao {
 		// 1.利用Expression拼接要查询的语句条件
 		List<Expression> exprList=new ArrayList<Expression>();
 		exprList.add(new Expression("cid","=",cid));
+		// 2.利用通用查询方法，得到按分类查询的分页结果
 		return findByCriteria(exprList, pc);
 	}
 
@@ -94,5 +100,63 @@ public class GoodsDao {
 		pb.setTr(tr);//设置总记录
 		
 		return pb;
+	}
+
+	/**
+	 * 以商品名称进行模糊查询
+	 * 1.利用Expression拼接要查询的语句条件
+	 * 2.利用通用查询方法，得到按分类查询的分页结果
+	 * @param gname
+	 * @param pc
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static PageBean<Goods> findByGname(String gname, int pc) throws SQLException {
+		// 1.利用Expression拼接要查询的语句条件
+		List<Expression> exprList=new ArrayList<Expression>();
+		exprList.add(new Expression("gname","like","%"+gname+"%"));
+		// 2.利用通用查询方法，得到按分类查询的分页结果
+		return findByCriteria(exprList, pc);
+	}
+
+	/**
+	 * 按商品gid查询，加载商品详细信息
+	 * 1.商品表，分类表，多表查询
+	 * 2.把map中的数据映射到goods对象中
+	 * 3.把map中的数据映射到category对象中
+	 * 4.把map中的数据映射到store对象中
+	 * 5.建立联系，返回goods对象
+	 * @param gid
+	 * @return
+	 * @throws SQLException 
+	 */
+	public Goods findByGid(String gid) throws SQLException {
+
+		
+	    // 1.商品表，分类表，多表查询
+		String sql="select * from t_goods a,t_category b where a.cid=b.cid and a.gid=?";
+		Map<String,Object> map=qr.query(sql, new MapHandler(),gid);
+	    
+		String sql2="select * from t_goods a,t_store b where a.sid=b.sid and a.gid=?";
+		Map<String,Object> map2=qr.query(sql2, new MapHandler(),gid);
+		
+		// 2.把map中的数据映射到goods对象中
+		Goods goods=CommonUtils.toBean(map, Goods.class);
+		// 3.把map中的数据映射到category对象中
+		Category category=CommonUtils.toBean(map, Category.class);
+		//当 pid!=null,该此分类是二级分类
+		if(map.get("pid")!=null){
+			Category parent=new Category();
+			parent.setCid((String)map.get("pid"));
+			category.setParent(parent);
+		}
+		
+		// 4.把map中的数据映射到store对象中
+		Store store=CommonUtils.toBean(map2, Store.class);
+		//Store store=CommonUtils.toBean(map, Store.class);
+		// 5.建立联系，返回goods对象
+		goods.setCategory(category);
+		goods.setStore(store);
+		return goods;
 	}
 }
