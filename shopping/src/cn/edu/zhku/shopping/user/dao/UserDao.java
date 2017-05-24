@@ -49,9 +49,9 @@ public class UserDao {
 	 * @throws SQLException 
 	 */
 	public void add(User user) throws SQLException {
-		String sql = "insert into t_user values(?,?,?,?)";
+		String sql = "insert into t_user values(?,?,?,?,?)";
 		Object[] params = {user.getUid(), user.getLoginname(), user.getLoginpass(),
-				user.getEmail()};
+				user.getEmail(),0+""};
 		qr.update(sql, params);
 	}
 	

@@ -3,70 +3,109 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>left</title>
-<base target="body" />
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<meta http-equiv="content-type" content="text/html;charset=utf-8">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/jsps/css/user/personal.css'/>">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>左侧导航</title>
+<head>
+
+<style type="text/css">
+body{margin:0;padding:0;overflow-x:hidden;}
+html, body{height:100%;}
+img{border:none;}
+*{font-family:'微软雅黑';font-size:12px;color:#626262;}
+dl,dt,dd{display:block;margin:0;}
+a{text-decoration:none;}
+
+#bg{background-image:url(images/content/dotted.png);}
+.container{width:100%;height:100%;margin:auto;}
+
+/*left*/
+.leftsidebar_box{width:160px;height:auto !important;overflow:visible !important;position:fixed;height:100% !important;background-color:#FFC0CB;}
+.line{height:2px;width:100%;background-image:url(images/left/line_bg.png);background-repeat:repeat-x;}
+.leftsidebar_box dt{padding-left:40px;padding-right:10px;background-repeat:no-repeat;background-position:10px center;color:#f5f5f5;font-size:14px;position:relative;line-height:48px;cursor:pointer;}
+.leftsidebar_box dd{background-color:#FFA54F;padding-left:40px;}
+.leftsidebar_box dd a{color:#f5f5f5;line-height:20px;}
+.leftsidebar_box dt img{position:absolute;right:10px;top:20px;}
+.system_log dt{background-image:url(images/left/system.png)}
+.custom dt{background-image:url(images/left/custom.png)}
+.channel dt{background-image:url(images/left/channel.png)}
+.app dt{background-image:url(images/left/app.png)}
+.cloud dt{background-image:url(images/left/cloud.png)}
+.syetem_management dt{background-image:url(images/left/syetem_management.png)}
+.source dt{background-image:url(images/left/source.png)}
+.statistics dt{background-image:url(images/left/statistics.png)}
+.leftsidebar_box dl dd:last-child{padding-bottom:10px;}
+</style>
 
 </head>
 
-<body>
+<body id="bg">
 
-	<div align="center">
-		<h1>全部功能</h1>
+<div class="container">
+
+	<div class="leftsidebar_box">
+		<div class="line"></div>
+		<dl class="system_log">
+			<dt onClick="changeImage()">个人中心</dt>
+			<dd class="first_dd"><a href="<c:url value='/jsps/userImfo/personInfo.jsp'/>" target="body">个人信息</a></dd>
+		</dl>
+	
+		<dl class="custom">
+			<dt onClick="changeImage()">我的订单</dt>
+			<dd class="first_dd"><a href="#">订单管理</a></dd>
+
+		</dl>
+	
+		<dl class="channel">
+			<dt>我的购物车</dt>
+			<dd class="first_dd"><a href="#">购物车管理</a></dd>
+		</dl>
+	
+		<dl class="app">
+			<dt onClick="changeImage()">我的密码</dt>
+
+			<dd class="first_dd"><a href="<c:url value='/UserServlet?method=updatePassword'/>" target="body">修改密码</a></dd>
+		</dl>
+		<%-- 
+		sessionUser
+		<c:if test="${requestScope.sessionUser.isStore!=0} ">
+		<dl class="app">
+			<dt onClick="changeImage()">我的店铺</dt>
+			<dd class="first_dd"><a href="#">店铺管理</a></dd>
+		</dl>
+		</c:if>
+		
+		--%> 
 	</div>
-	<hr />
-	<div align="center">
-		<ul>
-			<li class="person"><a href="index.html">个人中心</a></li>
-			<hr />
-			<li class="person"><a href="#">个人资料</a>
-			<hr />
-				<ol>
-					<li class="active"><a href="information.html">&nbsp;&nbsp;&nbsp;个人信息</a></li>
-					<li><a href="safety.html">&nbsp;&nbsp;&nbsp;安全设置</a></li>
-					<li><a href="address.html">&nbsp;&nbsp;&nbsp;收货地址</a></li>
-				</ol>
-			</li>
-			<hr />
-			<li class="person"><a href="#">我的订单</a>
-			<hr />
-				<ol>
-					<li><a href="order.html">&nbsp;&nbsp;&nbsp;订单管理</a></li>
-					<li><a href="change.html">&nbsp;&nbsp;&nbsp;退款售后</a></li>
-				</ol>
-			</li>
-			<hr/>
-			<!-- 					<li class="person"> -->
-			<!-- 						<a href="#">我的资产</a> -->
-			<!-- 						<ul> -->
-			<!-- 							<li> <a href="coupon.html">优惠券 </a></li> -->
-			<!-- 							<li> <a href="bonus.html">红包</a></li> -->
-			<!-- 							<li> <a href="bill.html">账单明细</a></li> -->
-			<!-- 						</ul> -->
-			<!-- 					</li> -->
 
-			<!-- 					<li class="person"> -->
-			<!-- 						<a href="#">我的小窝</a> -->
-			<!-- 						<ul> -->
-			<!-- 							<li> <a href="collection.html">收藏</a></li> -->
-			<!-- 							<li> <a href="foot.html">足迹</a></li> -->
-			<!-- 							<li> <a href="comment.html">评价</a></li> -->
-			<!-- 							<li> <a href="news.html">消息</a></li> -->
-			<!-- 						</ul> -->
-			<!-- 					</li> -->
+</div>
 
-		</ul>
-	</div>
+<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/main.css'/>">
+
+<script type="text/javascript" src="<c:url value='/jsps/js/userImfo/jquery.js'/>"></script>
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#FFC0CB"});
+$(function(){
+	$(".leftsidebar_box dd").hide();
+	$(".leftsidebar_box dt").click(function(){
+		$(".leftsidebar_box dt").css({"background-color":"#FFC0CB"})
+		$(this).css({"background-color": "#FFC0CB"});
+		$(this).parent().find('dd').removeClass("menu_chioce");
+		$(".menu_chioce").slideUp(); 
+		$(this).parent().find('dd').slideToggle();
+		$(this).parent().find('dd').addClass("menu_chioce");
+	});
+})
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
 </body>
-
 </html>
+
+
+			
+
+

@@ -25,6 +25,6 @@ a {text-decoration: none;}
   </head>
   
   <body>
-    <h1>欢迎登录网上商城</h1>
+    <h1>个人信息主页</h1>
   </body>
 </html>
