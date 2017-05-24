@@ -10,7 +10,7 @@ public class User {
 	private String loginname;//登录名
 	private String loginpass;//登录密码
 	private String email;//邮箱
-	
+	private int isStore;//是否开店
 	// 注册表单
 	private String reloginpass;//确认密码
 	private String verifyCode;//验证码
@@ -121,11 +121,21 @@ public class User {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+	
+	
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", loginname=" + loginname + ", loginpass="
 				+ loginpass + ", email=" + email + ", reloginpass="
 				+ reloginpass + ", verifyCode=" + verifyCode + ", newpass="
 				+ newpass + "]";
+	}
+
+	public int getIsStore() {
+		return isStore;
+	}
+
+	public void setIsStore(int isStore) {
+		this.isStore = isStore;
 	}
 }

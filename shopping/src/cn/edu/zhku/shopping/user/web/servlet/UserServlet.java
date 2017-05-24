@@ -244,6 +244,15 @@ public class UserServlet extends BaseServlet {
 		 * 3. 调用userService#login()方法
 		 */
 		User user = userService.login(formUser);
+		
+		//将是否开店中的isStore中的int类型  转化为  string 类型
+		//便于在el表达式中使用
+		
+		/* 原因：JSP中EL表达式获取后台bean对象int类型的数据，显示为0，
+		 * 原因是EL表达式不支持int类型，可以先在后台获取该int数据，
+		 * 转化成String类型的数据，再单独放入域对象。*/
+		
+		String isStore=user.getIsStore()+"";
 		/*
 		 * 4. 开始判断
 		 */
@@ -254,6 +263,10 @@ public class UserServlet extends BaseServlet {
 		} else {
 			// 保存用户到session
 			req.getSession().setAttribute("sessionUser", user);
+			
+			//把是否开店保存到session中
+			req.getSession().setAttribute("isStore", isStore);
+			
 			// 获取用户名保存到cookie中
 			String loginname = user.getLoginname();
 			loginname = URLEncoder.encode(loginname, "utf-8");

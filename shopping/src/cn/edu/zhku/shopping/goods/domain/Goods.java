@@ -1,7 +1,7 @@
 package cn.edu.zhku.shopping.goods.domain;
 
 import cn.edu.zhku.shopping.category.domain.Category;
-import cn.edu.zhku.shopping.store.domain.Store;
+import cn.edu.zhku.shopping.store.store.domain.Store;
 
 
 /**

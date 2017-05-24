@@ -16,8 +16,7 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/jsps/css/main.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/main.css'/>">
 </head>
 
 <body>
