@@ -1,5 +1,6 @@
-package cn.edu.zhku.shopping.store.domain;
+package cn.edu.zhku.shopping.store.store.domain;
 
+import cn.edu.zhku.shopping.category.domain.Category;
 import cn.edu.zhku.shopping.user.domain.User;
 
 public class Store {
@@ -8,7 +9,8 @@ public class Store {
 	private String sname;//店铺名称
 	
 	private User user;//所属用户
-
+	private Category category;//开店类型
+	
 	public String getSid() {
 		return sid;
 	}
@@ -31,6 +33,14 @@ public class Store {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 	
