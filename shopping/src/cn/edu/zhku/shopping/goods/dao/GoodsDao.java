@@ -15,7 +15,7 @@ import cn.edu.zhku.shopping.goods.domain.Goods;
 import cn.edu.zhku.shopping.pager.Expression;
 import cn.edu.zhku.shopping.pager.PageBean;
 import cn.edu.zhku.shopping.pager.PageConstants;
-import cn.edu.zhku.shopping.store.domain.Store;
+import cn.edu.zhku.shopping.store.store.domain.Store;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
 

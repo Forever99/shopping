@@ -31,21 +31,6 @@ $(function() {
 	bar.colorStyle = 0;//指定配色样式，一共0,1,2,3,4
 	bar.config.imgDir = "<c:url value='/menu/img/'/>";//小工具所需图片的路径
 	bar.config.radioButton=true;//是否排斥，多个一级分类是否排斥
-
-	/*
-	1. 程序设计：一级分类名称
-	2. Java Javascript：二级分类名称
-	3. /goods/jsps/book/list.jsp：点击二级分类后链接到的URL
-	4. body:链接的内容在哪个框架页中显示
-	*/
-// 	bar.add("1", "二级分类", "/goods/BookServlet?method=findByCategory&cid=${child.cid}", "body");
-// 	bar.add("1", "二级分类", "/goods/BookServlet?method=findByCategory&cid=${child.cid}", "body");
-// 	bar.add("1", "二级分类", "/goods/BookServlet?method=findByCategory&cid=${child.cid}", "body");
-// 	bar.add("2", "1", "/goods/BookServlet?method=findByCategory&cid=${child.cid}", "body");
-// 	bar.add("2", "2", "/goods/BookServlet?method=findByCategory&cid=${child.cid}", "body");
-// 	bar.add("2", "2", "/goods/BookServlet?method=findByCategory&cid=${child.cid}", "body");
-	
-
 <c:forEach items="${parents}" var="parent">
   <c:forEach items="${parent.children}" var="child">
 	bar.add("${parent.cname}","${child.cname}","/shopping/GoodsServlet?method=findByCategory&cid=${child.cid}", "body");
