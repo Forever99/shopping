@@ -17,9 +17,6 @@ import cn.itcast.servlet.BaseServlet;
  */
 public class CategoryServlet extends BaseServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private CategoryService categoryService=new CategoryService();
 	
