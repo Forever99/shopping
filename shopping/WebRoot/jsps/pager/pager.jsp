@@ -15,7 +15,7 @@
 	}
 </script>
 
-
+<c:if test="${!empty pb }">
 <div class="divBody">
   <div class="divContent">
     <%--上一页 --%>
@@ -95,3 +95,4 @@
     <a href="javascript:_go();" class="aSubmit">确定</a>
   </div>
 </div>
+</c:if>

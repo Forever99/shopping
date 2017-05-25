@@ -51,6 +51,16 @@
     <servlet-name>StoreCategoryServlet</servlet-name>
     <servlet-class>cn.edu.zhku.shopping.store.category.web.servlet.StoreCategoryServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AdminUserServlet</servlet-name>
+    <servlet-class>cn.edu.zhku.shopping.admin.user.web.servlet.AdminUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AdminStoreServlet</servlet-name>
+    <servlet-class>cn.edu.zhku.shopping.admin.store.web.servlet.AdminStoreServlet</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -89,6 +99,14 @@
   <servlet-mapping>
     <servlet-name>StoreCategoryServlet</servlet-name>
     <url-pattern>/store/StoreCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminUserServlet</servlet-name>
+    <url-pattern>/admin/AdminUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminStoreServlet</servlet-name>
+    <url-pattern>/admin/AdminStoreServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
