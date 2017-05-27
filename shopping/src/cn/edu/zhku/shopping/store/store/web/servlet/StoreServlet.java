@@ -46,7 +46,14 @@ public class StoreServlet extends BaseServlet {
 	     * window.parent.parent.location.href='<%=basePath%>/storejsps/store/main.jsp';
 	     * </script>
 		 */
-		return "f:/storejsps/store/index.jsp";
+		
+		/**
+		 * 写法2：在 html target="body"  ---> target="_parent" 
+		 */
+		req.setAttribute("store",store );
+		
+		return "f:/storejsps/store/main.jsp";
+//		return "f:/storejsps/store/index.jsp";
 	}
 
 }

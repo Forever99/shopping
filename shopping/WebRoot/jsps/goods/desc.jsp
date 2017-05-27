@@ -44,7 +44,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">所属店铺：${goods.store.sname }</td>
+				<td colspan="3"><a href="<c:url value='/store/StoreCategoryServlet?method=findStoreByName&sid=${goods.store.sid }' />"  target="_parent">所属店铺：${goods.store.sname }</a></td>
 			</tr>
 
 		</table>

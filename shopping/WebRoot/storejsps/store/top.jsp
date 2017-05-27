@@ -24,12 +24,12 @@
   <body style="background: rgb(78,78,78);color: #fff;">
 <h1 style="text-align: center; line-height: 30px;">我的店铺</h1>
 <div style="line-height: 10px;">
-	<span>管理员：${sessionScope.sessionUser.loginname }</span>
-	<a target="_top" href="<c:url value='/adminjsps/login.jsp'/>">退出</a>
+	<span>店商：${sessionScope.sessionUser.loginname }</span>
+	<a target="_top" href="<c:url value='/UserServlet?method=quit'/>">退出</a>
 	<span style="padding-left:50px;">
 	    <a href="<c:url value='/jsps/main2.jsp'/>">主页</a>
 		<a href="<c:url value='/admin/AdminCategoryServlet?method=findAll'/>">店铺信息管理</a>
-		<a href="<c:url value='/adminjsps/admin/book/main.jsp'/>">商品管理</a>
+		<a href="<c:url value='/storejsps/store/storeCategroy/main.jsp'/>">商品管理</a>
 		<a href="<c:url value='/admin/AdminOrderServlet?method=findAll'/>">顾客订单管理</a>
 	</span>
 </div>

@@ -91,7 +91,7 @@ public class GoodsServlet extends BaseServlet {
 	public String load(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		 // 1.传递参数gid /GoodsServlet?method=load&bid=${goods.gid }'
+		 // 1.传递参数gid /GoodsServlet?method=load&gid=${goods.gid }'
 		String gid = req.getParameter("gid");
 		 // 2.获取相应的goods对象
 		Goods goods=goodsService.load(gid);

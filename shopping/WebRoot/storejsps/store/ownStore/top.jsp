@@ -39,15 +39,13 @@ a:hover {
 		<c:choose>
 			<c:when test="${empty sessionScope.sessionUser }">
 				<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">亲，请登录</a> |&nbsp; 
-		  <a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">免费注册</a>&nbsp;&nbsp; 
-		  <a href="<c:url value='/index.jsp'/>" target="_top">|&nbsp;&nbsp;主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		  <a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">免费注册</a>
 			</c:when>
 			<c:otherwise>
 		      用户：${sessionScope.sessionUser.loginname }&nbsp;&nbsp;|&nbsp;&nbsp;
 		  
 <!-- 		  <a href="<c:url value='/jsps/user/pwd.jsp'/>" target="body">修改密码</a>&nbsp;&nbsp;|&nbsp;&nbsp; -->
 				<a href="<c:url value='/UserServlet?method=quit'/>" target="_parent">退出</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		    <a href="<c:url value='/index.jsp'/>" target="_top">&nbsp;主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,9 +53,9 @@ a:hover {
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    <a href="<c:url value='/index.jsp'/>" target="_top">|&nbsp;&nbsp;主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		   <a href="<c:url value='/CartItemServlet?method=myCart'/>"
-					target="body">|我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					target="body">|我的购物车</a>&nbsp;&nbsp;|&nbsp;
 		  <a href="<c:url value='/OrderServlet?method=myOrders'/>"
-					target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;
 		   <a href="<c:url value='/jsps/userImfo/main.jsp'/>" target="_parent">我的中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 <!-- 		   <select name="select" onchange="window.open(this.options[this.selected].value,target='_self')"> -->
 				<!-- 				<select name="S1" onChange="window.open(this.value),target='_top'"> -->
@@ -70,9 +68,14 @@ a:hover {
 					</c:when>
 
 					<c:otherwise>
+					<a href="<c:url value='/storejsps/store/ownStore/main.jsp'/>"
+							target="_parent">我的店铺</a>
+					|&nbsp;
 					<a href="<c:url value='/storejsps/store/index.jsp'/>"
 							target="_parent">个人店铺管理</a>
 					</c:otherwise>
+					
+					
 				</c:choose>
 
 			</c:otherwise>

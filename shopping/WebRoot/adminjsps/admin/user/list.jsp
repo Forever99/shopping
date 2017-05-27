@@ -27,16 +27,25 @@
 	src="<c:url value='/jsps/pager/pager.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
+		<script type="text/javascript">
+		function checkForm() {
+			if(!$("#loginname").val()) {
+				alert("查询名不能为空！");
+				return false;
+			}
+			return true;
+		}
+	</script>
 </head>
 
 <body>
 	<h2 style="text-align: center;">用户信息列表</h2>
 
 	<div align="center">
-		<form action="<c:url value='/admin/AdminUserServlet'/>" method="post">
+		<form action="<c:url value='/admin/AdminUserServlet'/>" method="post" onsubmit="return checkForm()">
 			<input type="hidden" name="method" value="selectUserByName" /> 
 			<%-- <input type="hidden" name="pb" value="${pb}"/>--%>
-			<input type="text" name="loginname" /> <input type="submit" value="按用户名搜索" />
+			<input type="text" name="loginname"  id="loginname"/> <input type="submit" value="按用户名搜索" />
 		</form>
 	</div>
 	<div align="center">
