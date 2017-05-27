@@ -102,6 +102,43 @@ public class GoodsDao {
 		return pb;
 	}
 
+	
+	/**
+	 * 分页查询方法二：
+	 * @param cid
+	 * @param pc
+	 * @return
+	 * @throws SQLException
+	 */
+	/*
+    private static PageBean<Goods> findByCriteria2(String cid,int pc) throws SQLException {
+		
+		//1.得到每页记录pc
+		int ps=PageConstants.GOODS_PAGE_SIZE;
+		ArrayList<Object> params = new ArrayList<Object>();
+		//2.得到总记录书tr
+		String sql="select count(*) from t_goods where cid=?";
+		Number number = (Number)qr.query(sql, new ScalarHandler(), cid);
+		int tr = number.intValue();
+		//3.得到当前页记录beanList
+		sql="select * from t_goods a ,t_store b where a.cid=? order by orderBy limit ?,?";
+		params.add(cid);
+		params.add((pc-1)*ps);//当前页记录的开始下标
+		params.add(ps);//当前页记录数
+		List<Goods> beanList=qr.query(sql, new BeanListHandler<Goods>(Goods.class),params.toArray());
+		//4.创建相应的PageBean,返回分页查询结果
+		PageBean<Goods> pb=new PageBean<Goods>();
+		
+		//当前PageBean中没设置url，url的设置有Servlet完成
+		pb.setBeanList(beanList);//设置记录
+		pb.setPc(pc);//设置当前页
+		pb.setPs(ps);//设置每页记录
+		pb.setTr(tr);//设置总记录
+		
+		return pb;
+	}
+	*/
+	
 	/**
 	 * 以商品名称进行模糊查询
 	 * 1.利用Expression拼接要查询的语句条件

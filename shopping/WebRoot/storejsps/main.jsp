@@ -26,11 +26,13 @@
 			<td colspan="2" class="tdTop"><iframe frameborder="0"
 					src="<c:url value='/storejsps/top.jsp'/>" name="top"></iframe></td>
 		</tr>
+		
 		<tr>
 			<td class="tdLeft" rowspan="2"><iframe frameborder="0"
 					src="<c:url value='/storejsps/left.jsp'/>" name="left"></iframe></td>
 
 		</tr>
+		
 		<tr>
 			<td style="border-top-width: 0px;"><iframe frameborder="0"
 					src="<c:url value='/storejsps/body.jsp'/>" name="body"></iframe></td>

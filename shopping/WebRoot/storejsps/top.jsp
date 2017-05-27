@@ -39,13 +39,15 @@ a:hover {
 		<c:choose>
 			<c:when test="${empty sessionScope.sessionUser }">
 				<a href="<c:url value='/jsps/user/login.jsp'/>" target="_parent">亲，请登录</a> |&nbsp; 
-		  <a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">免费注册</a>
+		  <a href="<c:url value='/jsps/user/regist.jsp'/>" target="_parent">免费注册</a>&nbsp;&nbsp; 
+		  <a href="<c:url value='/index.jsp'/>" target="_top">|&nbsp;&nbsp;主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</c:when>
 			<c:otherwise>
 		      用户：${sessionScope.sessionUser.loginname }&nbsp;&nbsp;|&nbsp;&nbsp;
 		  
 <!-- 		  <a href="<c:url value='/jsps/user/pwd.jsp'/>" target="body">修改密码</a>&nbsp;&nbsp;|&nbsp;&nbsp; -->
 				<a href="<c:url value='/UserServlet?method=quit'/>" target="_parent">退出</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		    <a href="<c:url value='/index.jsp'/>" target="_top">&nbsp;主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,7 +71,7 @@ a:hover {
 
 					<c:otherwise>
 					<a href="<c:url value='/storejsps/store/index.jsp'/>"
-							target="_parent">我的店铺</a>
+							target="_parent">个人店铺管理</a>
 					</c:otherwise>
 				</c:choose>
 

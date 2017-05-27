@@ -81,9 +81,9 @@ function validateLoginname() {
 		$("#loginnameError").css("display", "");
 		$("#loginnameError").text("用户名不能为空！");
 		bool = false;
-	} else if(value.length < 3 || value.length > 20) {//长度校验
+	} else if(value.length < 2 || value.length > 20) {//长度校验
 		$("#loginnameError").css("display", "");
-		$("#loginnameError").text("用户名长度必须在3 ~ 20之间！");
+		$("#loginnameError").text("用户名长度必须在2 ~ 20之间！");
 		bool = false;
 	}
 	return bool;
