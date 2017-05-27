@@ -53,6 +53,7 @@
 			<form id="form1" action="<c:url value='/CartItemServlet'/>" method="post">
 				<input type="hidden" name="method" value="add"/>
 				<input type="hidden" name="gid" value="${goods.gid }"/>
+				<input type="hidden" name="sid" value="${goods.store.sid }"/>
   				我要买：<input id="cnt" style="width: 40px;text-align: center;" type="text" name="quantity" value="1"/>${goods.units}
   			</form>
   			<a id="btn" href="javascript:$('#form1').submit();"></a>
