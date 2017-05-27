@@ -105,4 +105,12 @@ public class UserService {
 			throw new RuntimeException(e);
 		}
 	}
+//	/**
+//	 * 通过user查询用户id
+//	 * @param user
+//	 * @return
+//	 */
+//	public String findByUser(User user) {
+//		return userDao.
+//	}
 }

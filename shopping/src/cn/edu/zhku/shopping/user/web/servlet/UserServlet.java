@@ -152,8 +152,8 @@ public class UserServlet extends BaseServlet {
 		String loginname = formUser.getLoginname();
 		if(loginname == null || loginname.trim().isEmpty()) {
 			errors.put("loginname", "用户名不能为空！");
-		} else if(loginname.length() < 3 || loginname.length() > 20) {
-			errors.put("loginname", "用户名长度必须在3~20之间！");
+		} else if(loginname.length() < 2|| loginname.length() > 20) {
+			errors.put("loginname", "用户名长度必须在2~20之间！");
 		} else if(!userService.ajaxValidateLoginname(loginname)) {
 			errors.put("loginname", "用户名已被注册！");
 		}
@@ -252,7 +252,8 @@ public class UserServlet extends BaseServlet {
 		 * 原因是EL表达式不支持int类型，可以先在后台获取该int数据，
 		 * 转化成String类型的数据，再单独放入域对象。*/
 		
-		String isStore=user.getIsStore()+"";
+
+		
 		/*
 		 * 4. 开始判断
 		 */
@@ -262,7 +263,13 @@ public class UserServlet extends BaseServlet {
 			return "f:/jsps/user/login.jsp";
 		} else {
 			// 保存用户到session
+			
+//			//给user 添加用户id信息
+//			String  uid=userService.findByUser(user);
+//			user.setUid(uid);
+       	    String isStore=user.getIsStore()+"";
 			req.getSession().setAttribute("sessionUser", user);
+			
 			
 			//把是否开店保存到session中
 			req.getSession().setAttribute("isStore", isStore);
@@ -354,6 +361,6 @@ public class UserServlet extends BaseServlet {
 	public String quit(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.getSession().invalidate();
-		return "r:/jsps/user/login.jsp";
+		return "r:/index.jsp";
 	}
 }

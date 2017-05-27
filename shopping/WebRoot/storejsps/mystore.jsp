@@ -27,7 +27,7 @@
 
 <body>
 	<h1>我要开店</h1>
-	<form target="body" action="<c:url value='/store/StoreServlet'/>" method="post">
+	<form target="_parent" action="<c:url value='/store/StoreServlet'/>" method="post">
 		<input type="hidden" name="method" value="creatStore"/>
 		<input type="hidden" name="uid" value="${sessionScope.sessionUser.uid}"/>
 		<table>
