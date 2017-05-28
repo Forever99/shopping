@@ -19,7 +19,7 @@
 	function searchAction(){
 	   var x=$("#gname").val();
 	    if (!x) {
-			alert("没输入搜索名搜索，不能排序！");
+			alert("没输入搜索名搜索，请输入！");
 		return false;
 		}
 		

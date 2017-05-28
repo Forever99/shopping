@@ -63,6 +63,12 @@ public class CartItemServlet extends BaseServlet {
 		Goods goods=CommonUtils.toBean(map, Goods.class);
 		Store store = CommonUtils.toBean(map, Store.class);
 		User user=(User)req.getSession().getAttribute("sessionUser");
+//		
+//		if(user==null){
+//			req.setAttribute("code", "fail");
+//			req.setAttribute("msg", "对不起，你没有权限购买商品，请登录");
+//			return "f:/jsps/msg.jsp";
+//		}
 		cartItem.setGoods(goods);
 		cartItem.setUser(user);
 		cartItem.setStore(store);
