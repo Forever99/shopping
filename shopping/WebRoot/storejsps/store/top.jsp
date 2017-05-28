@@ -28,9 +28,9 @@
 	<a target="_top" href="<c:url value='/UserServlet?method=quit'/>">退出</a>
 	<span style="padding-left:50px;">
 	    <a href="<c:url value='/jsps/main2.jsp'/>">主页</a>
-		<a href="<c:url value='/admin/AdminCategoryServlet?method=findAll'/>">店铺信息管理</a>
+		<a href="<c:url value='#'/>" target="top">店铺信息管理</a>
 		<a href="<c:url value='/storejsps/store/storeCategroy/main.jsp'/>">商品管理</a>
-		<a href="<c:url value='/admin/AdminOrderServlet?method=findAll'/>">顾客订单管理</a>
+		<a href="<c:url value='/store/StoreOrderServlet?method=findAll'/>">顾客订单管理</a>
 	</span>
 </div>
   </body>
