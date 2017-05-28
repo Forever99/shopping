@@ -28,16 +28,16 @@
 	
 	.divTitle {
 		text-align:left;
-		width: 900px;
+		width: 700px;
 		height: 25px;
 		line-height: 25px;
-		background-color: #efeae5;
-		border: 5px solid #efeae5;
+		background-color: #FDF9E3;
+		border: 5px solid #FDF9E3;
 	}
 	.divContent {
-		width: 900px;
+		width: 700px;
 		height: 230px;
-		border: 5px solid #efeae5;
+		border: 5px solid #FDF9E3;
 		margin-right:20px; 
 		margin-bottom:20px;
 	}
