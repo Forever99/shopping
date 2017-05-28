@@ -61,6 +61,7 @@ public class GoodsServlet extends BaseServlet {
 	 */
 	public String findByGname(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		//1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
 		int pc=getPc(req);
 	    //2.得到访问资源url
@@ -140,5 +141,67 @@ public class GoodsServlet extends BaseServlet {
 			}catch(RuntimeException e){}
 		}
 		return pc;
+	}
+	
+	/**
+	 * 以商品名称进行模糊查询  ---升序查询
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String findByGnameUp(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		//1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
+		int pc=getPc(req);
+	    //2.得到访问资源url
+		String url=getUrl(req);
+	    //3.获取商品名称：gname，得到二级分类，进行查询
+		String gname=req.getParameter("gname");
+		
+//		String gid=goodsService.findIdByGname(gname);//查找商品
+	   
+		//4.通过  pc（当前页）和 gname（商品名称） 调用service同名方法进行查询
+		PageBean<Goods> pb=goodsService.findByGnameUp(gname,pc);
+	  
+		//5.给PageBean设置url(访问资源),beanlist(当页记录) 转发到  /jsps/goods/list.jsp
+		pb.setUrl(url);//此时pb对象参数才完整
+		req.setAttribute("pb", pb);
+		
+//		req.setAttribute("gname", gname);//返回搜索商品名
+		
+		return "f:/jsps/goods/list.jsp";
+	}
+	
+	/**
+	 *  以商品名称进行模糊查询  ---降序查询
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String findByGnameDown(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		//1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
+		int pc=getPc(req);
+	    //2.得到访问资源url
+		String url=getUrl(req);
+	    //3.获取商品名称：gname，得到二级分类，进行查询
+		String gname=req.getParameter("gname");
+		
+//		String gid=goodsService.findIdByGname(gname);//查找商品
+	   
+		//4.通过  pc（当前页）和 gname（商品名称） 调用service同名方法进行查询
+		PageBean<Goods> pb=goodsService.findByGnameDown(gname,pc);
+	  
+		//5.给PageBean设置url(访问资源),beanlist(当页记录) 转发到  /jsps/goods/list.jsp
+		pb.setUrl(url);//此时pb对象参数才完整
+		req.setAttribute("pb", pb);
+		
+//		req.setAttribute("gname", gname);//返回搜索商品名
+		
+		return "f:/jsps/goods/list.jsp";
 	}
 }

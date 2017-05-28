@@ -84,13 +84,13 @@ function round(num,dec){
 <c:forEach items="${cartItemList }" var="cartItem">
 	<tr align="center">
 	    <td align="center" width="100px">
-		    <a href="<c:url value='/storejsps/mystore.jsp'/>"><span>${cartItem.store.sname }</span></a>
+		    <a href="<c:url value='/store/StoreCategoryServlet?method=findStoreByName&sid=${cartItem.store.sid }'/>" target="_parent"><span>${cartItem.store.sname }</span></a>
 		</td>
 		<td align="right" width="100px">
-			<a class="linkImage" href="<c:url value='/jsps/goods/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/${cartItem.goods.image_b }'/>"/></a>
+			<a class="linkImage" href="<c:url value='/GoodsServlet?method=load&gid=${cartItem.goods.gid }'/>"><img border="0" width="54" align="top" src="<c:url value='/${cartItem.goods.image_b }'/>"/></a>
 		</td>
 		<td align="left" width="200px">
-			<a href="<c:url value='/jsps/goods/desc.jsp'/>"><span>${cartItem.goods.gname }</span></a>
+			<a href="<c:url value='/GoodsServlet?method=load&gid=${cartItem.goods.gid }'/>"><span>${cartItem.goods.gname }</span></a>
 		</td>
 		<td>&yen;${cartItem.goods.currPrice }</td>
 		<td>${cartItem.quantity }</td>
