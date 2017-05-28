@@ -24,7 +24,7 @@ public class GoodsService {
 	public PageBean<Goods> findByCategory(String cid, int pc) {
 
 		try {
-			return goodsDao.findByCategory(cid,pc);
+			return GoodsDao.findByCategory(cid,pc);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -39,7 +39,7 @@ public class GoodsService {
 	 */
 	public PageBean<Goods> findByGname(String gname, int pc) {
 		try {
-			return goodsDao.findByGname(gname,pc);
+			return GoodsDao.findByGname(gname,pc);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -53,6 +53,34 @@ public class GoodsService {
 	public Goods load(String gid) {
 		try {
 			return goodsDao.findByGid(gid);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 以商品名称进行模糊查询  ---升序查询
+	 * @param gname
+	 * @param pc
+	 * @return
+	 */
+	public PageBean<Goods> findByGnameUp(String gname, int pc) {
+		try {
+			return goodsDao.findByGnameUp(gname,pc);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 以商品名称进行模糊查询  ---降序查询
+	 * @param gname
+	 * @param pc
+	 * @return
+	 */
+	public PageBean<Goods> findByGnameDown(String gname, int pc) {
+		try {
+			return goodsDao.findByGnameDown(gname,pc);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

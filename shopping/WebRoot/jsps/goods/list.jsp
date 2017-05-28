@@ -41,22 +41,6 @@
 		<p>商品产地： ${goods.pro_area }</p>
 		<%--  <p>店铺：${goods.store.sname }</p>  --%>
 	 
-
-	<%-- url标签会自动对参数进行url编码 --%>
-<%--
-
-<!-- 	<c:url value="/goodsServlet" var="authorUrl"> -->
-<!-- 		<c:param name="method" value="findByAuthor"/> -->
-<!-- 		<c:param name="author" value="${goods.author }"/> -->
-<!-- 	</c:url> -->
-<!-- 	<p><a href="${authorUrl }" name='P_zz' title='${goods.author }'>${goods.author }</a></p> -->
-
-<!-- 	<c:url value="/GoodsServlet" var="store"> -->
-<!-- 		<c:param name="method" value="findByStore"/> -->
-<!-- 		<c:param name="sname" value="${goods.store.name }"/> -->
-<!-- 	</c:url> -->
-<!-- 	<p><a href="${store }" name='P_zz' title='${goods.store.sname }'>${goods.store.sname }</a></p> -->
- --%>
   </div>
   </li>
 </c:forEach>

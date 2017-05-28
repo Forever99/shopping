@@ -196,4 +196,74 @@ public class GoodsDao {
 		goods.setStore(store);
 		return goods;
 	}
+
+	/**
+	 * 以商品名称进行模糊查询  ---升序查询
+	 * @param gname
+	 * @param pc
+	 * @return
+	 * @throws SQLException 
+	 */
+	public PageBean<Goods> findByGnameUp(String gname, int pc) throws SQLException {
+		//1.得到每页记录pc
+		int ps=PageConstants.GOODS_PAGE_SIZE;
+		
+		//2.得到总记录数tr
+		String sql="select count(*) from t_goods where gname like ? ";
+		Number number = (Number)qr.query(sql, new ScalarHandler(), "%"+gname+"%");
+		int tr = number.intValue();
+		//3.得到当前页记录beanList
+		sql="select * from t_goods where gname like ?  order by currPrice limit ?,? ";
+		ArrayList<Object> params = new ArrayList<Object>();
+		params.add("%"+gname+"%");
+		params.add((pc-1)*ps);//当前页记录的开始下标
+		params.add(ps);//当前页记录数
+		
+		List<Goods> beanList=qr.query(sql, new BeanListHandler<Goods>(Goods.class),params.toArray());
+		//4.创建相应的PageBean,返回分页查询结果
+		PageBean<Goods> pb=new PageBean<Goods>();
+		
+		//5.当前PageBean中没设置url，url的设置有Servlet完成
+		pb.setBeanList(beanList);//设置记录
+		pb.setPc(pc);//设置当前页
+		pb.setPs(ps);//设置每页记录
+		pb.setTr(tr);//设置总记录
+		
+		return pb;
+	}
+
+	/**
+	 * 以商品名称进行模糊查询  ---降序查询
+	 * @param gname
+	 * @param pc
+	 * @return
+	 * @throws SQLException 
+	 */
+	public PageBean<Goods> findByGnameDown(String gname, int pc) throws SQLException {
+		//1.得到每页记录pc
+		int ps=PageConstants.GOODS_PAGE_SIZE;
+		
+		//2.得到总记录数tr
+		String sql="select count(*) from t_goods where gname like ? ";
+		Number number = (Number)qr.query(sql, new ScalarHandler(), "%"+gname+"%");
+		int tr = number.intValue();
+		//3.得到当前页记录beanList
+		sql="select * from t_goods where gname like ?  order by currPrice desc limit ?,? ";
+		ArrayList<Object> params = new ArrayList<Object>();
+		params.add("%"+gname+"%");
+		params.add((pc-1)*ps);//当前页记录的开始下标
+		params.add(ps);//当前页记录数
+		
+		List<Goods> beanList=qr.query(sql, new BeanListHandler<Goods>(Goods.class),params.toArray());
+		//4.创建相应的PageBean,返回分页查询结果
+		PageBean<Goods> pb=new PageBean<Goods>();
+		
+		//5.当前PageBean中没设置url，url的设置有Servlet完成
+		pb.setBeanList(beanList);//设置记录
+		pb.setPc(pc);//设置当前页
+		pb.setPs(ps);//设置每页记录
+		pb.setTr(tr);//设置总记录
+		
+		return pb;
+	}
 }

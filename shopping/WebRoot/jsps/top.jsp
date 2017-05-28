@@ -53,7 +53,7 @@ a:hover {
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    <a href="<c:url value='/index.jsp'/>" target="_top">|&nbsp;&nbsp;主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		    &nbsp;&nbsp;&nbsp;&nbsp;
 		   <a href="<c:url value='/CartItemServlet?method=myCart'/>"
 					target="body">|我的购物车</a>&nbsp;&nbsp;|&nbsp;
 		  <a href="<c:url value='/OrderServlet?method=myOrders'/>"
