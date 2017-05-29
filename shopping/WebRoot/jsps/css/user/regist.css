@@ -9,5 +9,5 @@
 .inputClass {width: 240px; height: 32px; border: 1px solid #7f9db9; line-height: 32px; padding-left: 10px;}
 #imgVerifyCode {width: 100px;}
 #divVerifyCode {text-align: center; border: 1px solid #e2e2e2;}
-.errorClass {background: url(/shopping/images/error.png) no-repeat; color: #f40000; font-size: 10pt; border:1px solid #ffb8b8; background-color: #fef2f2; padding: 8px 8px 8px 35px;}
+.errorClass {color: #f40000; font-size: 10pt;}
 

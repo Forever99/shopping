@@ -55,7 +55,7 @@ $(function() {
  * 登录名校验方法
  */
 function validateSname() {
-	var id = "Sname";
+	var id = "sname";
 	var value = $("#" + id).val();//获取输入框内容
 	/*
 	 * 1. 非空校验
@@ -94,13 +94,13 @@ function validateLoginname() {
 	/*
 	 * 2. 长度校验
 	 */
-	if(value.length < 3 || value.length > 20) {
+	if(value.length < 2 || value.length > 20) {
 		/*
 		 * 获取对应的label
 		 * 添加错误信息
 		 * 显示label
 		 */
-		$("#" + id + "Error").text("用户名长度必须在3 ~ 20之间！");
+		$("#" + id + "Error").text("用户名长度必须在2 ~ 20之间！");
 		showError($("#" + id + "Error"));
 		false;
 	}

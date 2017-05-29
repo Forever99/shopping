@@ -36,6 +36,7 @@ public class AdminStoreDao {
 	 */
 	private Store toStore(Map<String,Object> map) {
 		if(map == null || map.size() == 0) return null;
+		
 		Store store = CommonUtils.toBean(map, Store.class);
 		Category category = CommonUtils.toBean(map, Category.class);
 		User user = CommonUtils.toBean(map, User.class);
@@ -69,9 +70,9 @@ public class AdminStoreDao {
 	 */
 	public PageBean<Store> findAllStore(int pc) throws SQLException {
 		//1.得到每页记录pc
-		int ps=PageConstants.USERIMFO_PAGE_SIZE;
+		int ps=PageConstants.STORERIMFO_PAGE_SIZE;
 		ArrayList<Object> params = new ArrayList<Object>();//参数
-		//2.得到总记录书tr
+		//2.得到总记录数tr
 		String sql="select count(*) from t_store";
 		Number number = (Number)qr.query(sql, new ScalarHandler());
 		int tr = number.intValue();
@@ -104,4 +105,121 @@ public class AdminStoreDao {
 		Map<String,Object> map = qr.query(sql, new MapHandler(), sname);
 		return toStore(map);
 	}
+
+	/**
+	 * 所属用户名是否存在校验
+	 * @param loginname
+	 * @return
+	 */
+	public boolean ajaxValidateLoginname(String loginname) throws SQLException {
+		String sql = "select count(1) from t_user where loginname=?";
+		Number number = (Number)qr.query(sql, new ScalarHandler(), loginname);
+		return number.intValue() == 0;
+	}
+
+	/**
+	 * 店铺名不同名校验
+	 * @param sname
+	 * @return
+	 * @throws SQLException 
+	 */
+	public boolean ajaxValidateSname(String sname) throws SQLException {
+		String sql = "select count(1) from t_store where sname=?";
+		Number number = (Number)qr.query(sql, new ScalarHandler(),sname);
+		return number.intValue() == 0;
+	}
+
+	/**
+	 * 添加店铺
+	 * @param store
+	 * @return
+	 * @throws SQLException 
+	 */
+	public void addStore(Store store) throws SQLException {
+		String loginname=store.getUser().getLoginname();
+		String sql="select uid from t_user where loginname=?";
+		String uid = (String) qr.query(sql, new ScalarHandler(),loginname);
+		
+		//添加店铺表
+		String sql2="insert into t_store values(?,?,?,?)";
+		Object[] params={store.getSid(),store.getSname(),uid,store.getCategory().getCid()};
+		qr.update(sql2,params);
+		
+		//修改用户表
+		String sql3="update t_user set isStore=? where uid=?";
+		Object[] params2={1+"",uid};
+		qr.update(sql3,params2);
+		
+	}
+
+	/**
+	 * 查询所有一级分类
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Category> findCategory() throws SQLException {
+		String sql="select * from t_category where pid is null";
+		List<Category> list = qr.query(sql, new BeanListHandler<Category>(Category.class));
+		return list;
+	}
+
+	/**
+	 * 查询店铺的店铺信息和用户信息
+	 * @param sid
+	 * @return
+	 * @throws SQLException 
+	 */
+	public Store findStore(String sid) throws SQLException {
+		String sql="select * from t_user a,t_store b,t_category c where a.uid=b.uid and b.cid=c.cid and b.sid=?";
+		Map<String, Object> map = qr.query(sql, new MapHandler(),sid);
+		
+		User user=CommonUtils.toBean(map, User.class);
+		Store store=CommonUtils.toBean(map, Store.class);
+		Category category=CommonUtils.toBean(map, Category.class);
+		store.setUser(user);
+		store.setCategory(category);
+		return store;
+	}
+
+	/**
+	 * 修改店铺信息
+	 * @param store
+	 * @throws SQLException 
+	 */
+	public void editStoreById(String sname,String cid,String sid) throws SQLException {
+		String sql="update t_store set sname=?,cid=? where sid=?";
+		Object[] params={sname,cid,sid};
+		qr.update(sql,params);
+	}
+
+	/**
+	 * 查询店铺sid
+	 * @param beforeName
+	 * @return
+	 * @throws SQLException 
+	 */
+	public String findStoreByName(String beforeName) throws SQLException {
+		String sql="select sid from t_store where sname=?";
+		String sid=(String)qr.query(sql, new ScalarHandler(),beforeName);
+		return sid;
+	}
+
+	/**
+	 * 删除店铺
+	 * @param sid
+	 * @throws SQLException 
+	 */
+	public void deleteStoreById(String sid) throws SQLException {
+		String sql="select uid from t_store where sid=?";
+		String uid=(String) qr.query(sql, new ScalarHandler(),sid);
+		//删除店铺表
+		String sql2="delete from t_store where sid=?";
+		qr.update(sql2,sid);
+		
+		//修改用户开店状态
+		String sql3="update t_user set isStore=? where uid=?";
+		qr.update(sql3,0+"",uid);
+	}
+
+	
 }

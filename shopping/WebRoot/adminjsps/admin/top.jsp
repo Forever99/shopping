@@ -28,7 +28,7 @@
 	<a target="_top" href="<c:url value='/adminjsps/login.jsp'/>">退出</a>
 	<span style="padding-left:50px;">
 		<a href="<c:url value='/admin/AdminCategoryServlet?method=findAll'/>">分类管理</a>
-		<a href="<c:url value='/adminjsps/admin/store/list.jsp'/>">店铺信息管理</a>
+		<a href="<c:url value='/admin/AdminStoreServlet?method=findAllStore'/>">店铺信息管理</a>
 		<a href="<c:url value='/admin/AdminUserServlet?method=findAllUser'/>">用户信息管理</a>
 <!-- 		<a href="<c:url value='/admin/AdminOrderServlet?method=findAll'/>">用户信息管理</a> -->
 	</span>
