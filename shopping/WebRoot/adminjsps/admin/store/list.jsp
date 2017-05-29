@@ -49,7 +49,7 @@
 		</form>
 	</div>
 	<div align="center">
-	<h3><a href="<c:url value='/adminjsps/admin/store/add.jsp'/>">添加店铺</a></h3>
+	<h3><a href="<c:url value='/admin/AdminStoreServlet?method=addStorePre'/>">添加店铺</a></h3>
 	</div>
 	<c:if test="${! empty msg }">
 	<h3 align="center" style="color:red">搜索结果：${msg }</h3>

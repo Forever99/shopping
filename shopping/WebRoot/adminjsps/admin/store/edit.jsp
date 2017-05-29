@@ -27,13 +27,14 @@
   </div>
   <div id="divBody">
 <form action="<c:url value='/admin/AdminStoreServlet'/>" method="post" id="addForm">
-	<input type="hidden" name="method" value="editStore"/>  
-	
+	<input type="hidden" name="method" value="editUserById"/> 
+	<input type="hidden"  name="sid"  value="${store.sid }"/> 
+	<input type="hidden" name="BeforeName" value="${store.sname }"/>
     <table id="tableForm">
       <tr>
         <td class="tdText">店铺名：</td>
         <td class="tdInput">
-          <input class="inputClass" type="text" name="Sname" id="Sname" value="${form.sname }"/>
+          <input class="inputClass" type="text" name="sname" id="sname" value="${form.sname }"/>
         </td>
         <td class="tdError">
           <label class="errorClass" id="SnameError">${errors.sname }</label>
@@ -42,27 +43,26 @@
       <tr>
         <td class="tdText">所属用户名：</td>
         <td>
-          <input class="inputClass" type="text" name="loginname" id="loginname" value="${form.loginname }"/>
+          <input class="inputClass" type="text" name="loginname" id="loginname" value="${form.user.loginname }" disabled="disabled"/>
         </td>
         <td>
-          <label class="errorClass" id="loginnameError">${errors.loginname }</label>
+          <label class="errorClass" id="loginnameError"></label>
         </td>
       </tr>
         <tr>
         <td class="tdText">开店类型：</td>
-        <td><select size="1" name="cname" class="inputClass">
-           <option value="书" selected>书</option>
-           <option value="衣">衣</option>
-           <option value="鞋">鞋</option>
-           <option value="家用电器">家用电器</option>
-           <option value="化妆品">化妆品</option>
-           </select>
-        </td>
+		<td><select name="cid" id="cid" class="cid">
+		<option value="">==请选择开店类型==</option>
+<c:forEach items="${parents }" var="parent">
+<option value="${parent.cid }" <c:if test="${form.category.cid eq parent.cid }">selected="selected"</c:if>>${parent.cname }</option>
+</c:forEach>
+	</select>
+				</td>
       </tr>
        <tr>
         <td></td>
         <td>
-          <input type="image" src="<c:url value='/images/addStore1.jpg'/>" id="submitBtn"/>
+          <input type="submit" value="修改店铺信息"/>
         </td>
         <td>
           <label></label>
