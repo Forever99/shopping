@@ -54,13 +54,13 @@ a{text-decoration:none;}
 	
 		<dl class="custom">
 			<dt onClick="changeImage()">我的订单</dt>
-			<dd class="first_dd"><a href="#">订单管理</a></dd>
+			<dd class="first_dd"><a href="<c:url value='/OrderServlet?method=myOrders'/>" target="body">订单管理</a></dd>
 
 		</dl>
 	
 		<dl class="channel">
 			<dt>我的购物车</dt>
-			<dd class="first_dd"><a href="#">购物车管理</a></dd>
+			<dd class="first_dd"><a href="<c:url value='/CartItemServlet?method=myCart'/>" target="body">购物车管理</a></dd>
 		</dl>
 	
 		<dl class="app">
