@@ -147,7 +147,7 @@ public class StoreGoodsDao {
 	}
 
 	/**
-	 * 加载图书详细信息
+	 * 加载商品详细信息
 	 * 
 	 *  1.商品表，分类表，多表查询
 	 * 2.把map中的数据映射到goods对象中
