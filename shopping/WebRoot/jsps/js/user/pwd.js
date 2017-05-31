@@ -72,27 +72,11 @@ function validateLoginpass() {
 		$("#loginpassError").css("display", "");
 		$("#loginpassError").text("密码不能为空！");
 		bool = false;
-	} else if(value.length < 3 || value.length > 20) {//长度校验
+	} else(value.length < 3 || value.length > 20) {//长度校验
 		$("#loginpassError").css("display", "");
 		$("#loginpassError").text("密码长度必须在3 ~ 20之间！");
 		bool = false;
-	} else {// 验证原密码是否正确
-		$.ajax({
-			cache: false,
-			async: false,
-			type: "POST",
-			dataType: "json",
-			data: {method: "validateLoginpass", loginpass: value},
-			url: "/shopping/UserServlet",
-			success: function(flag) {
-				if(!flag) {
-					$("#loginpassError").css("display", "");
-					$("#loginpassError").text("原密码错误！");
-					bool = false;				
-				}
-			}
-		});
-	}
+	} 
 	return bool;
 }
 

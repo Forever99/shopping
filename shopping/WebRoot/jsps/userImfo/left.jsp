@@ -66,7 +66,7 @@ a{text-decoration:none;}
 		<dl class="app">
 			<dt onClick="changeImage()">我的密码</dt>
 
-			<dd class="first_dd"><a href="<c:url value='/UserServlet?method=updatePassword'/>" target="body">修改密码</a></dd>
+			<dd class="first_dd"><a href="<c:url value='/jsps/user/pwd.jsp'/>" target="body">修改密码</a></dd>
 		</dl>
 		<%-- 
 		sessionUser

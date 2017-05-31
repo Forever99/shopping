@@ -97,14 +97,6 @@ public class UserService {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public boolean ajaxValidateLoginpass(String loginuid,String loginpass) {
-		try {
-			return userDao.findByUidAndPassword(loginuid,loginpass);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
 //	/**
 //	 * 通过user查询用户id
 //	 * @param user
