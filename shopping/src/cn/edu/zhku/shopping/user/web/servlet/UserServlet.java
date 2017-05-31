@@ -123,7 +123,7 @@ public class UserServlet extends BaseServlet {
 		 */
 		Map<String,String> errors = validateRegist(formUser, req.getSession());
 		if(errors.size() > 0) {
-			req.setAttribute("user", formUser);
+			req.setAttribute("form", formUser);
 			req.setAttribute("errors", errors);
 			return "f:/jsps/user/regist.jsp";
 		}
@@ -216,13 +216,12 @@ public class UserServlet extends BaseServlet {
 			throws ServletException, IOException {
 		/*
 		 * 1. 封装表单数据到User
-		 * 2. 校验表单数据
-		 * 3. 使用service查询，得到User
-		 * 4. 查看用户是否存在，如果不存在：
+		 * 2. 使用service查询，得到User
+		 * 3. 查看用户是否存在，如果不存在：
 		 *   * 保存错误信息：用户名或密码错误
 		 *   * 保存用户数据：为了回显
 		 *   * 转发到login.jsp
-		 * 5.如果存在，则登录成功：
+		 * 4.如果存在，则登录成功：
 		 *   * 保存当前查询出的user到session中
 		 *   * 保存当前用户的名称到cookie中，注意中文需要编码处理。
 		 */
@@ -230,18 +229,9 @@ public class UserServlet extends BaseServlet {
 		 * 1. 封装表单数据到user
 		 */
 		User formUser = CommonUtils.toBean(req.getParameterMap(), User.class);
-		/*
-		 * 2. 校验
-		 */
-		Map<String,String> errors = validateLogin(formUser, req.getSession());
-		if(errors.size() > 0) {
-			req.setAttribute("form", formUser);
-			req.setAttribute("errors", errors);
-			return "f:/jsps/user/login.jsp";
-		}
 		
 		/*
-		 * 3. 调用userService#login()方法
+		 * 2. 调用userService#login()方法
 		 */
 		User user = userService.login(formUser);
 		
@@ -255,7 +245,7 @@ public class UserServlet extends BaseServlet {
 
 		
 		/*
-		 * 4. 开始判断
+		 * 3. 开始判断
 		 */
 		if(user == null) {
 			req.setAttribute("msg", "用户名或密码错误！");
@@ -282,14 +272,6 @@ public class UserServlet extends BaseServlet {
 			resp.addCookie(cookie);
 			return "r:/index.jsp";//重定向到主页
 		}
-	}
-
-	/*
-	 * 登录校验
-	 */
-	private Map<String,String> validateLogin(User formUser, HttpSession session) {
-		Map<String,String> errors = new HashMap<String,String>();
-		return errors;
 	}
 		
 	/**
@@ -329,25 +311,6 @@ public class UserServlet extends BaseServlet {
 			req.setAttribute("form", formUser);//为了回显
 			return "f:/jsps/user/pwd.jsp";
 		}
-	}
-	
-	public String ajaxValidateLoginpass(HttpServletRequest req, HttpServletResponse resp)
-	throws ServletException, IOException {
-		/*
-		 * 1. 获取用户uid和密码
-		 */
-		String loginpass = req.getParameter("loginpass");
-		User user = (User)req.getSession().getAttribute("sessionUser");
-		String loginuid = user.getUid();		
-		/*
-		 * 2. 通过service得到校验结果
-		 */
-		boolean b = userService.ajaxValidateLoginpass(loginuid,loginpass);
-		/*
-		 * 3. 发给客户端
-		 */
-		resp.getWriter().print(b);
-		return null;
 	}
 	
 	/**
