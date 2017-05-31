@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>管理员添加用户</title>
+    <title>管理员修改用户</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,7 +23,7 @@
   <body>
 <div id="divMain">
   <div id="divTitle">
-    <span id="spanTitle">管理员添加用户</span>
+    <span id="spanTitle">管理员修改用户</span>
   </div>
   <div id="divBody">
 <form action="<c:url value='/admin/AdminUserServlet'/>" method="post" id="registForm">
