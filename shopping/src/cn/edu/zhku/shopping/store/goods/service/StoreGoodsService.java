@@ -74,7 +74,7 @@ public class StoreGoodsService {
 	}
 
 	/**
-	 * 加载图书详细信息
+	 * 加载商品详细信息
 	 * @param gid
 	 * @return
 	 */

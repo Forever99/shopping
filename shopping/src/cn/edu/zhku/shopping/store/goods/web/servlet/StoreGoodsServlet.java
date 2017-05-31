@@ -184,7 +184,7 @@ public class StoreGoodsServlet extends BaseServlet {
 	}
 	
 	/**
-	 * 加载图书详细信息
+	 * 加载商品详细信息
 	 *    method=load&gid=${goods.gid }
 	 * 1.获得category 一级分类和二级分类
 	 * 2.获得store   店铺名
