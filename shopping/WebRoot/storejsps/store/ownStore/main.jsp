@@ -30,18 +30,6 @@
 			<td class="tdLeft" rowspan="2"><iframe frameborder="0"
 					src="<c:url value='/storejsps/store/ownStore/left.jsp '/>" name="left"></iframe></td>
 
-<%--
-<td class="tdLeft" rowspan="2"><iframe frameborder="0"
-src="<c:url value='/store/StoreCategoryServlet?method=findStoreAllBefore&sid=${store.sid}'/>" name="left"></iframe></td>
-
- --%>
-<%--
-
-<td class="tdSearch" style="border-bottom-width: 0px;"><iframe
-					frameborder="0" src="<c:url value='/storejsps/store/ownStore/search.jsp'/>"
-					name="search"></iframe></td>
- --%>
-
 			<td class="tdSearch" style="border-bottom-width: 0px;"><iframe
 					frameborder="0" src="<c:url value='/storejsps/store/ownStore/search.jsp'/>"
 					name="search"></iframe></td>
@@ -52,22 +40,6 @@ src="<c:url value='/store/StoreCategoryServlet?method=findStoreAllBefore&sid=${s
 		</tr>
 	</table>
   
-  
-  
- <%-- 
-<table class="table" align="center" width="100%" height="100%" border="0">
-	<tr style="height: 120px; ">
-		<td align="center" width="200px;">
-		
-<!-- 		<iframe frameborder="0" src="<c:url value='/store/StoreCategoryServlet?method=ajaxFindParents'/>" name="left"></iframe> -->
-			<iframe frameborder="0" src="<c:url value='/store/StoreCategoryServlet?method=findStoreAll&loginname=${sessionScope.sessionUser.loginname }'/>" name="left"></iframe>
-		</td>
-		<td>
-			<iframe frameborder="0" src="<c:url value='/storejsps/store/storeCategroy/body.jsp'/>" name="body"></iframe>
-		</td>
-	</tr>
-</table>
---%> 
 
 
   </body>
