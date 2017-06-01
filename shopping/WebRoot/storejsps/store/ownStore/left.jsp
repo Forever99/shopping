@@ -40,7 +40,7 @@ $(function() {
 
 
   <c:forEach items="${sessionScope.parents.children}" var="child">
-	bar.add("${sessionScope.parents.cname}", "${child.cname}", "/shopping/store/StoreGoodsServlet?method=findByCategory&cid=${child.cid}&sid=${sessionScope.store.sid}", "body");
+	bar.add("${sessionScope.parents.cname}", "${child.cname}", "/shopping/store/StoreGoodsServlet?method=findByCategoryAfter&cid=${child.cid}&sid=${sessionScope.store.sid}", "body");
   </c:forEach>
 <%--  </c:forEach>  --%>
 	
