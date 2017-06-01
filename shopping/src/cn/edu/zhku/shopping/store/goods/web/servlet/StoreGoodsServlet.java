@@ -32,7 +32,7 @@ public class StoreGoodsServlet extends BaseServlet {
 	
 
 	/**
-	 * 查询店铺的分类下的全部商品  --通过二级分类 cid,sid
+	 * 查询店铺的分类下的全部商品  --通过二级分类 cid,sid  ------前台
 	 *     findByCategory&cid=${child.cid}&sid=${sid}
 	 *     
 	 * 1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
@@ -66,6 +66,43 @@ public class StoreGoodsServlet extends BaseServlet {
 		pb.setUrl(url);//此时pb对象参数才完整
 		req.setAttribute("pb", pb);
 		return "f:/storejsps/store/storeCategroy/list.jsp";
+	}
+	
+	/**
+	 * 查询店铺的分类下的全部商品  --通过二级分类 cid,sid   ----后台
+	 *     findByCategory&cid=${child.cid}&sid=${sid}
+	 *     
+	 * 1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
+	 * 2.得到访问资源url
+	 * 3.获取分类cid，店铺sid，得到二级分类，和所属店铺，进行查询
+	 * 4.通过  pc（当前页）, cid（二级分类id）,店铺sid 调用service同名方法进行查询
+	 * 5.给PageBean设置url(访问资源),beanlist(当页记录) 转发到  /jsps/goods/list.jsp
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String findByCategoryAfter(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		//1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
+		int pc=getPc(req);
+	    //2.得到访问资源url
+		String url=getUrl(req);
+		
+		//3.获取分类cid，店铺sid，得到二级分类，和所属店铺，进行查询
+
+		String cid = req.getParameter("cid");//获取二级分类cid
+
+		String sid = req.getParameter("sid");//获取店铺sid
+		
+		//4.通过  pc（当前页）, cid（二级分类id）,店铺sid 调用service同名方法进行查询
+		PageBean<Goods> pb=storeGoodsService.findByCategory(cid,sid,pc);
+	  
+		//5.给PageBean设置url(访问资源),beanlist(当页记录) 转发到  /storejsps/store/storeCategroy/list.jsp
+		pb.setUrl(url);//此时pb对象参数才完整
+		req.setAttribute("pb", pb);
+		return "f:/storejsps/store/ownStore/list.jsp";
 	}
 
 
@@ -184,7 +221,7 @@ public class StoreGoodsServlet extends BaseServlet {
 	}
 	
 	/**
-	 * 加载商品详细信息
+	 * 加载商品详细信息------------前台
 	 *    method=load&gid=${goods.gid }
 	 * 1.获得category 一级分类和二级分类
 	 * 2.获得store   店铺名
@@ -216,6 +253,41 @@ public class StoreGoodsServlet extends BaseServlet {
 		
 	   // 5.转发到/jsps/goods/desc.jsp显示
 		return "f:/storejsps/store/storeCategroy/desc.jsp";
+	}
+	
+	/**
+	 * 加载商品详细信息  ----------后台
+	 *    method=load&gid=${goods.gid }
+	 * 1.获得category 一级分类和二级分类
+	 * 2.获得store   店铺名
+	 * 3.获得 goods   商品信息
+	 * 4.转发到： /storejsps/store/storeCategroy/desc.jsp
+	 *    1.该页面可以进行查看商品详细信息和店铺信息
+	 *    2.点击编辑活删除  还可以看到分类信息
+	 *    
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String loadAfter(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		//1.获得gid
+		String gid = req.getParameter("gid");
+		
+		// 2.获取相应的goods对象
+		Goods goods=storeGoodsService.load(gid);
+		
+		//3.获得cateogry对象  一级分类pid
+		Category parents=storeGoodsService.loadCategory(goods.getCategory().getCid());
+	    // 4.保存到req中
+		req.setAttribute("goods", goods);
+		req.setAttribute("parents", parents);
+		
+	   // 5.转发到/jsps/goods/desc.jsp显示
+		return "f:/storejsps/store/ownStore/desc.jsp";
 	}
 	
 	/**
