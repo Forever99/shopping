@@ -39,24 +39,24 @@
 
 		$("#btn").click(
 				function() {
-// 					var gname = $("#gname").val();
+					var gname = $("#gname").val();
 					var currPrice = $("#currPrice").val();
 					var price = $("#price").val();
 					var discount = $("#discount").val();
-// 					var description = $("#description").val();
-// 					var pro_area = $("#pro_area").val();
-// 					var units = $("#units").val();
-// 					var pid = $("#pid").val();
-// 					var cid = $("#cid").val();
-// 					var image_w = $("#image_w").val();
-// 					var image_b = $("#image_b").val();
+					var description = $("#description").val();
+					var pro_area = $("#pro_area").val();
+					var units = $("#units").val();
+					var pid = $("#pid").val();
+					var cid = $("#cid").val();
+					var image_w = $("#image_w").val();
+					var image_b = $("#image_b").val();
 
-// 					if (!gname || !currPrice || !price || !discount
-// 							|| !description || !pro_area || !units || !pid
-// 							|| !cid || !image_w || !image_b) {
-// 						alert("商品名、当前价、定价、折扣、描述、产地、单位、所属类别、商品子类别、大图、小图都不能为空！");
-// 						return false;
-// 					}
+					if (!gname || !currPrice || !price || !discount
+							|| !description || !pro_area || !units || !pid
+							|| !cid || !image_w || !image_b) {
+						alert("商品名、当前价、定价、折扣、描述、产地、单位、所属类别、商品子类别、大图、小图都不能为空！");
+						return false;
+					}
 
 					if (isNaN(currPrice) || isNaN(price) || isNaN(discount)) {
 						alert("当前价、定价、折扣必须是合法小数！");

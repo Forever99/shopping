@@ -149,5 +149,18 @@ public class OrderService {
 		}
 	}
 
+	/**
+	 * 支付订单
+	 * @param oid
+	 * @param i
+	 */
+	public void updateStatusAll(String oid) {
+		try {
+			orderDao.updateStatusAll(oid);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	
 }

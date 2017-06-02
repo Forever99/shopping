@@ -351,7 +351,7 @@ public class StoreGoodsServlet extends BaseServlet {
 		// 3.删除商品
 		storeGoodsService.delete(gid);
 		// 4.保存成功信息，转发到msg.jsp
-		req.setAttribute("msg", "删除图书成功！");
+		req.setAttribute("msg", "删除商品成功！");
 		return "f:/storejsps/store/storeCategroy/msg.jsp";
 	}
 	

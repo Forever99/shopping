@@ -97,8 +97,7 @@ public class AdminUserDao {
 		User user = qr.query(sql, new BeanHandler<User>(User.class),uid);
 		return user;
 	}
-
-	/**
+        /**
 	 * 修改用户信息
 	 * @param formUser
 	 * @throws SQLException 
