@@ -6,6 +6,7 @@ import java.util.List;
 import cn.edu.zhku.shopping.admin.user.dao.AdminUserDao;
 import cn.edu.zhku.shopping.pager.PageBean;
 import cn.edu.zhku.shopping.user.domain.User;
+import cn.itcast.commons.CommonUtils;
 
 /**
  * 管理员管理用户业务层
@@ -92,5 +93,23 @@ public class AdminUserService {
 			throw new RuntimeException(e);
 		}
 		
+	}
+	/**
+	 * 添加用户
+	 * @param user
+	 */
+	public void regist(User user) {
+		/*
+		 * 1. 数据的补齐
+		 */
+		user.setUid(CommonUtils.uuid());
+		/*
+		 * 2. 向数据库插入
+		 */
+		try {
+			adminUserDao.add(user);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
