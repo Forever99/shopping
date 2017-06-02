@@ -97,8 +97,7 @@ public class AdminUserDao {
 		User user = qr.query(sql, new BeanHandler<User>(User.class),uid);
 		return user;
 	}
-
-	/**
+        /**
 	 * 修改用户信息
 	 * @param formUser
 	 * @throws SQLException 
@@ -117,5 +116,16 @@ public class AdminUserDao {
 	public void deleteUserById(String uid) throws SQLException {
 		String sql="delete from t_user where uid=?";
 		qr.update(sql,uid);
+	}
+	/**
+	 * 添加用户
+	 * @param user
+	 * @throws SQLException 
+	 */
+	public void add(User user) throws SQLException {
+		String sql = "insert into t_user values(?,?,?,?,?)";
+		Object[] params = {user.getUid(), user.getLoginname(), user.getLoginpass(),
+				user.getEmail(),0+""};
+		qr.update(sql, params);
 	}
 }

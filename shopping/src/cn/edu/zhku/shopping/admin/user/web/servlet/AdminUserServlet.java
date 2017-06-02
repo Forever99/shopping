@@ -207,8 +207,8 @@ public class AdminUserServlet extends BaseServlet {
 		String loginname = formUser.getLoginname();
 		if(loginname == null || loginname.trim().isEmpty()) {
 			errors.put("loginname", "用户名不能为空！");
-		} else if(loginname.length() < 3 || loginname.length() > 20) {
-			errors.put("loginname", "用户名长度必须在3~20之间！");
+		} else if(loginname.length() < 2 || loginname.length() > 20) {
+			errors.put("loginname", "用户名长度必须在2~20之间！");
 		} else if(!userService.ajaxValidateLoginname(loginname)) {
 			errors.put("loginname", "用户名已被注册！");
 		}
@@ -276,15 +276,6 @@ public class AdminUserServlet extends BaseServlet {
 			throws ServletException, IOException {
 		//1. 封装表单数据到User对象
 		User formUser = CommonUtils.toBean(req.getParameterMap(), User.class);
-		/*
-		//2. 校验之, 如果校验失败，保存错误信息，返回到add.jsp显示
-		Map<String,String> errors = validateRegist(formUser, req.getSession());//修改用户校验
-		if(errors.size() > 0) {
-			req.setAttribute("form", formUser);
-			req.setAttribute("errors", errors);
-			return "f:/adminjsps/admin/user/edit.jsp";
-		}
-		*/
 		//2. 使用service完成业务
 		adminUserService.editUserById(formUser);
 		//3. 保存成功信息，转发到msg.jsp显示
