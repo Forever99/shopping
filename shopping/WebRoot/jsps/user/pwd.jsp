@@ -60,7 +60,7 @@
 			<tr>
 				<td align="right">验证码:</td>
 				<td>
-				  <input class="input" type="text" name="verifyCode" id="verifyCode" value="${form.verifyCode }""/>
+				  <input class="input" type="text" name="verifyCode" id="verifyCode" value="${form.verifyCode }"/>
 				</td>
 				<td><label id="verifyCodeError" class="error"></label></td>
 			</tr>
