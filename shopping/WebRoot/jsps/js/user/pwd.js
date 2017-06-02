@@ -1,6 +1,6 @@
 $(function() {	
 	/*
-	 * 1. 给注册按钮添加submit()事件，完成表单校验
+	 * 1. 给修改密码按钮添加submit()事件，完成表单校验
 	 */
 	$("#submit").submit(function(){
 		$("#msg").text("");
@@ -12,8 +12,7 @@ $(function() {
 			}
 		});
 		return bool;
-	});
-		
+	});	
 	/*
 	 * 2. 输入框得到焦点时隐藏错误信息
 	 */
@@ -21,7 +20,6 @@ $(function() {
 		var inputName = $(this).attr("name");
 		$("#" + inputName + "Error").css("display", "none");
 	});
-	
 	/*
 	 * 3. 输入框推动焦点时进行校验
 	 */
@@ -29,7 +27,6 @@ $(function() {
 		var inputName = $(this).attr("name");
 		invokeValidateFunction(inputName);
 	});
-	
 	/*
 	 * 4. 表单提交时进行校验
 	 */
@@ -72,11 +69,11 @@ function validateLoginpass() {
 		$("#loginpassError").css("display", "");
 		$("#loginpassError").text("密码不能为空！");
 		bool = false;
-	} else(value.length < 3 || value.length > 20) {//长度校验
+	} else if(value.length < 3 || value.length > 20) {//长度校验
 		$("#loginpassError").css("display", "");
 		$("#loginpassError").text("密码长度必须在3 ~ 20之间！");
 		bool = false;
-	} 
+	}
 	return bool;
 }
 
