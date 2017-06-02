@@ -39,7 +39,7 @@
 	
 		<p>商品描述： ${goods.description }</p>
 		<p>商品产地： ${goods.pro_area }</p>
-		<%--  <p>店铺：${goods.store.sname }</p>  --%>
+	    <p>店铺：${goods.store.sname }</p> 
 	 
 
 	<%-- url标签会自动对参数进行url编码 --%>
