@@ -21,7 +21,7 @@ public class GoodsServlet extends BaseServlet {
 	private GoodsService goodsService=new GoodsService();
 	
 	/**
-	 * 主页菜单显示，按分类查
+	 * 主页菜单显示，按分类查     -----  右边商品列表显示
 	 * 1.得到当前页pc （1）如果有页面传递，使用页面传递值 （2）如果没传，pc=1
 	 * 2.得到访问资源url
 	 * 3.获取分类cid，得到二级分类，进行查询

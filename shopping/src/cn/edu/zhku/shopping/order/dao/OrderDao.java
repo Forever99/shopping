@@ -318,6 +318,20 @@ public class OrderDao {
 		qr.update(sql, status, oid);
 	}
 
+	/**
+	 * 支付成功
+	 * @param oid
+	 * @throws SQLException 
+	 */
+	public void updateStatusAll(String oid) throws SQLException {
+		String[] split = oid.split(",");
+		//修改多个订单状态
+		for(int i=0;i<split.length;i++){
+		String sql = "update t_order  set status=? where oid=?";
+		qr.update(sql,2,split[i]);
+		}
+	}
+
 	
 
 }

@@ -12,36 +12,36 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<!-- 		<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/order/pay.css'/>"> -->
 	<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/order/ordersucc.css'/>">
   </head>
   
   <body>
-  <div align="center">
+  <div>
 <div class="div1">
 	<span class="span1">订单已生成</span>
 </div>
 <div class="div2">
-<!-- 	<img src="<c:url value='/images/duihao.jpg'/>" class="img"/> -->
-	
+
 	<c:forEach items="${orderList }" var="order">
-	<hr/>
-		<dt>订单编号</dt>
-		<dd>${order.oid }</dd>
-		<dt>合计金额</dt>
-		<dd><span class="price_t">&yen;${order.total }</span></dd>
-		<dt>收货地址</dt>
-		<dd>${order.address }</dd>
-	</dl>
+	<table>
+	<tr>
+		<td>订单编号</td><td>${order.oid }</td>
+   </tr>
+   <tr>
+		<td>合计金额</td><td>&yen;${order.total }</td>
+	</tr>
+	
+	<tr>
+	<td>收货地址</td><td>${order.address }</td>
+	</tr>
+	</table>
 	<hr/>
 	</c:forEach>
 	
     <span>总合计金额：${allTotal }</span>
-	
-<!-- 	<span>ITCAST书城感谢您的支持，祝您购物愉快！</span> -->
-	<a href="<c:url value='/OrderServlet?method=paymentPreAll&oid=${orderOid}&total=${allTotal  }'/>" id="linkPay">支付</a>
+	<a href="<c:url value='/OrderServlet?method=payment&oid=${orderOid}&total=${allTotal  }'/>" id="linkPay">支付</a>
+	<%--<a href="<c:url value='/OrderServlet?method=paymentPreAll&oid=${orderOid}&total=${allTotal  }'/>" id="linkPay">支付</a> --%>
 </div>
 
 </div>

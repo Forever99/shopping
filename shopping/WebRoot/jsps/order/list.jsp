@@ -70,7 +70,7 @@
 			<td>
 			<a href="<c:url value='/OrderServlet?method=load&oid=${order.oid }'/>">查看</a><br/>
 <c:if test="${order.status eq 1 }">
-				<a href="<c:url value='/OrderServlet?method=paymentPre&oid=${order.oid }'/>">支付</a><br/>
+				<a href="<c:url value='/OrderServlet?method=paymentPreAll&oid=${order.oid }&total=${order.total }'/>">支付</a><br/>
 				<a href="<c:url value='/OrderServlet?method=load&oid=${order.oid }&btn=cancel'/>">取消</a><br/>						
 </c:if>
 <c:if test="${order.status eq 3 }">

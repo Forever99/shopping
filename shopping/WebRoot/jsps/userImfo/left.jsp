@@ -22,7 +22,7 @@ a{text-decoration:none;}
 .container{width:100%;height:100%;margin:auto;}
 
 /*left*/
-.leftsidebar_box{width:160px;height:auto !important;overflow:visible !important;position:fixed;height:100% !important;background-color:#FFC0CB;}
+.leftsidebar_box{width:160px;height:auto !important;overflow:visible !important;position:fixed;height:100% !important;background-color:#DD2727;}
 .line{height:2px;width:100%;background-image:url(images/left/line_bg.png);background-repeat:repeat-x;}
 .leftsidebar_box dt{padding-left:40px;padding-right:10px;background-repeat:no-repeat;background-position:10px center;color:#f5f5f5;font-size:14px;position:relative;line-height:48px;cursor:pointer;}
 .leftsidebar_box dd{background-color:#FFA54F;padding-left:40px;}
@@ -86,12 +86,12 @@ a{text-decoration:none;}
 
 <script type="text/javascript" src="<c:url value='/jsps/js/userImfo/jquery.js'/>"></script>
 <script type="text/javascript">
-$(".leftsidebar_box dt").css({"background-color":"#FFC0CB"});
+$(".leftsidebar_box dt").css({"background-color":"#DD2727"});
 $(function(){
 	$(".leftsidebar_box dd").hide();
 	$(".leftsidebar_box dt").click(function(){
-		$(".leftsidebar_box dt").css({"background-color":"#FFC0CB"})
-		$(this).css({"background-color": "#FFC0CB"});
+		$(".leftsidebar_box dt").css({"background-color":"#DD2727"})
+		$(this).css({"background-color": "#DD2727"});
 		$(this).parent().find('dd').removeClass("menu_chioce");
 		$(".menu_chioce").slideUp(); 
 		$(this).parent().find('dd').slideToggle();

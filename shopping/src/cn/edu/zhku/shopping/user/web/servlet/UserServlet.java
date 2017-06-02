@@ -134,10 +134,29 @@ public class UserServlet extends BaseServlet {
 		/*
 		 * 4. 保存成功信息，转发到msg.jsp显示！
 		 */
-		req.setAttribute("code", "success");
-		req.setAttribute("msg", "注册成功，请选择返回登录页面或者主页！");
-		return "f:/jsps/msg.jsp";
+//		req.setAttribute("code", "success");
+//		req.setAttribute("msg", "注册成功，请选择返回登录页面或者主页！");
+		
+		//自动登录到主页
+		User user = userService.login(formUser);
+		
+		// 保存用户到session
+   	    String isStore=user.getIsStore()+"";
+		req.getSession().setAttribute("sessionUser", user);
+		
+		//把是否开店保存到session中
+		req.getSession().setAttribute("isStore", isStore);
+		// 获取用户名保存到cookie中
+		String loginname = user.getLoginname();
+		loginname = URLEncoder.encode(loginname, "utf-8");
+		Cookie cookie = new Cookie("loginname", loginname);
+		cookie.setMaxAge(60 * 60 * 24 * 10);//保存10天
+		resp.addCookie(cookie);
+		return "r:/index.jsp";//重定向到主页
+		
 	}
+
+	
 	
 	/*
 	 * 注册校验
