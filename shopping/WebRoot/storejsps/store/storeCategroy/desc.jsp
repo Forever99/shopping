@@ -104,7 +104,7 @@ function editForm() {
 	    <ul>
 	    	<li>商品编号：${goods.gid }</li>
 	    	<li>当前价：<span class="price_n">&yen;${goods.currPrice }</span></li>
-	    	<li>定价：<span style="text-decoration:line-through;">&yen;${goods.price }</span>　折扣：<span style="color: #c30;">${book.discount }</span>折</li>
+	    	<li>定价：<span style="text-decoration:line-through;">&yen;${goods.price }</span>　折扣：<span style="color: #c30;">${goods.discount }</span>折</li>
 	    </ul>
 		<hr style="margin-left: 50px; height: 1px; color: #dcdcdc"/>
 		<table class="tab">

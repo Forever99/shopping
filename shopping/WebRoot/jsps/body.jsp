@@ -25,6 +25,6 @@ a {text-decoration: none;}
   </head>
   
   <body>
-    <h1>欢迎登录网上商城</h1>
+      <img align="top" src="<c:url value='/images/shangpin.jpg'/>" class="img_image_w"/>
   </body>
 </html>
