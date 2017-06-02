@@ -18,7 +18,7 @@
 	<script type="text/javascript">
 		function checkForm() {
 			if(!$("#adminname").val()) {
-				alert("管理员名称不能为空！");
+				alert("管理员账号不能为空！");
 				return false;
 			}
 			if(!$("#adminpwd").val()) {
@@ -40,8 +40,8 @@
 	<input type="hidden" name="method" value="login"/>
 	<table>
 	<tr>
-	<td>管理员账户：</td>
-	<td><input type="text" name="adminname" value="" id="adminname"/></td>
+	<td>管理员账号：</td>
+	<td><input type="text" name="adminname" id="adminname"/></td>
 	</tr>
 	<tr>
 	<td>密　　　码：</td>

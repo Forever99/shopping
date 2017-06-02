@@ -32,21 +32,10 @@
 	
     <table id="tableForm">
 <!--     disabled="disabled" -->
-
-       <tr>
-        <td class="tdText">用户编号：</td>
-        <td class="tdInput">
-          <input class="inputClass" type="text" name="uid" id="uid" value="${form.uid }" disabled="disabled" />
-        </td>
-        <td class="tdError">
-          <label class="errorClass"></label>
-        </td>
-      </tr>
-
       <tr>
         <td class="tdText">用户名：</td>
         <td class="tdInput">
-          <input class="inputClass"  type="text" name="loginname" id="loginname" value="${form.loginname }" disabled="disabled"/>
+          <input class="inputClass"  type="text" name="loginname" id="loginname" value="${form.loginname }"/>
         </td>
         <td class="tdError">
           <label class="errorClass" id="loginnameError">${errors.loginname }</label>
@@ -64,7 +53,7 @@
         <tr>
         <td class="tdText">Email：</td>
         <td>
-          <input class="inputClass" type="text" name="email" id="email" value="${form.email }" disabled="disabled" />
+          <input class="inputClass" type="text" name="email" id="email" value="${form.email }"/>
         </td>
         <td>
           <label class="errorClass" id="emailError">${errors.email}</label>
@@ -74,10 +63,10 @@
        <tr>
         <td class="tdText">用户开店状态：</td>
         <td class="tdInput">
-          <input class="inputClass" type="text" name="loginname" id="loginname" value="${form.isStore }" disabled="disabled"/>
+          <input class="inputClass" type="text" name="isStore" id="loginname" value="${form.isStore }"/>
         </td>
         <td class="tdError">
-          <label class="errorClass" ></label>
+          <label class="errorClass" >${errors.isStore}</label>
         </td>
       </tr>
       
@@ -85,7 +74,6 @@
         <td></td>
         <td>
         <input type="submit" value="修改用户信息">
-<!--           <input type="image" src="<c:url value='/images/addUser2.jpg'/>" id="submitBtn"/> -->
         </td>
         <td>
           <label></label>

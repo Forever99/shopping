@@ -30,7 +30,7 @@
 		<script type="text/javascript">
 		function checkForm() {
 			if(!$("#loginname").val()) {
-				alert("查询名不能为空！");
+				alert("查询的用户名不能为空！");
 				return false;
 			}
 			return true;
