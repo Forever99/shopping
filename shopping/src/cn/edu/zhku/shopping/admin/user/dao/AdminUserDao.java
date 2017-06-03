@@ -13,7 +13,9 @@ import cn.edu.zhku.shopping.goods.domain.Goods;
 import cn.edu.zhku.shopping.pager.Expression;
 import cn.edu.zhku.shopping.pager.PageBean;
 import cn.edu.zhku.shopping.pager.PageConstants;
+import cn.edu.zhku.shopping.store.store.domain.Store;
 import cn.edu.zhku.shopping.user.domain.User;
+import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
 
 /**
@@ -102,10 +104,17 @@ public class AdminUserDao {
 	 * @param formUser
 	 * @throws SQLException 
 	 */
-	public void editUserById(User formUser) throws SQLException {
-		String sql="update t_user set loginpass=? where uid=?";
-		Object[] params={formUser.getLoginpass(),formUser.getUid()};
+	public void editUserById(User formUser,String uid) throws SQLException {
+		String sql="update t_user set loginname=?,loginpass=?,email=?where uid=?";
+		Object[] params={formUser.getLoginname(),formUser.getLoginpass(),formUser.getEmail(),uid};
 		qr.update(sql,params);
+		
+//		int isStore=formUser.getIsStore();
+//		//添加店铺
+//		if(isStore!=0){
+//			String sid=CommonUtils.uuid();
+//		    String sql2="insert into t_store";
+//		}
 	}
 
 	/**
@@ -127,5 +136,66 @@ public class AdminUserDao {
 		Object[] params = {user.getUid(), user.getLoginname(), user.getLoginpass(),
 				user.getEmail(),0+""};
 		qr.update(sql, params);
+	}
+
+	/**
+	 * 以登录名进行判断是否存在该用户
+	 * @param formUser
+	 * @throws SQLException 
+	 */
+	public int findByLoginname(User formUser) throws SQLException {
+		String sql="select count(*) from t_user where loginname=?";
+		Object obj = qr.query(sql, new ScalarHandler(),formUser.getLoginname());
+		Number number = (Number)obj;
+		int cnt = number.intValue();
+		return cnt;
+
+	}
+
+	/**
+	 * 以邮箱进行判断是否存在该用户
+	 * @param formUser
+	 * @return
+	 * @throws SQLException 
+	 */
+	public int findByEmail(User formUser) throws SQLException {
+		String sql="select count(*) from t_user where email=?";
+		Object obj = qr.query(sql, new ScalarHandler(),formUser.getEmail());
+		Number number = (Number)obj;
+		int cnt = number.intValue();
+		return cnt;
+	}
+
+	/**
+	 * 添加店铺
+	 * @param store
+	 * @return
+	 * @throws SQLException 
+	 */
+	public void addStore(Store store) throws SQLException {
+		String uid=store.getUser().getUid();
+
+		//添加店铺表
+		String sql2="insert into t_store values(?,?,?,?)";
+		Object[] params={store.getSid(),store.getSname(),uid,store.getCategory().getCid()};
+		qr.update(sql2,params);
+		
+		//修改用户表
+		String sql3="update t_user set isStore=? where uid=?";
+		Object[] params2={1+"",uid};
+		qr.update(sql3,params2);
+		
+	}
+
+	/**
+	 * 找店铺sid
+	 * @param uid
+	 * @return
+	 * @throws SQLException 
+	 */
+	public String findStore(String uid) throws SQLException {
+		String sql="select sid from t_user a,t_store b where a.uid=b.uid and a.uid=?";
+		String sid = (String) qr.query(sql, new ScalarHandler(),uid);
+		return sid;
 	}
 }

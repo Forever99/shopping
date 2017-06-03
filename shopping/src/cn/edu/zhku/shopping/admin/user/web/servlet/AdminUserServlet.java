@@ -1,6 +1,7 @@
 package cn.edu.zhku.shopping.admin.user.web.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.edu.zhku.shopping.admin.store.service.AdminStoreService;
 import cn.edu.zhku.shopping.admin.user.service.AdminUserService;
+import cn.edu.zhku.shopping.category.domain.Category;
 import cn.edu.zhku.shopping.goods.domain.Goods;
 import cn.edu.zhku.shopping.pager.PageBean;
+import cn.edu.zhku.shopping.store.store.domain.Store;
 import cn.edu.zhku.shopping.user.domain.User;
 import cn.edu.zhku.shopping.user.service.UserService;
 import cn.itcast.commons.CommonUtils;
@@ -25,6 +29,8 @@ import cn.itcast.servlet.BaseServlet;
 public class AdminUserServlet extends BaseServlet {
 
 	private AdminUserService adminUserService=new AdminUserService();
+	
+	private AdminStoreService adminStoreService=new AdminStoreService();
 	
 	private UserService userService=new UserService();//借用userService里的方法
 	
@@ -275,10 +281,44 @@ public class AdminUserServlet extends BaseServlet {
 	public String editUserById(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		//1. 封装表单数据到User对象
+		String uid=req.getParameter("uuid");//获取要修改的id
+		
+		String befoLoginname=req.getParameter("befoLoginname");//以前的登录名
+		
+		String befoEmail=req.getParameter("befoEmail");//以前的邮箱
+		
+		
+		//2.获取表单数据
 		User formUser = CommonUtils.toBean(req.getParameterMap(), User.class);
-		//2. 使用service完成业务
-		adminUserService.editUserById(formUser);
-		//3. 保存成功信息，转发到msg.jsp显示
+		Map<String,Object> errors=new HashMap<String,Object>();
+		//3.思路：如果用户名和邮箱是以前的，则不用验证  用户名和邮箱是否已经存在
+		if(!befoLoginname.equals(formUser.getLoginname())){
+			int value=adminUserService.findByLoginname(formUser);//判断是否存在
+			if(value==1){
+			errors.put("loginname", "用户名已经存在，请重新输入！");
+			formUser.setUid(uid);
+			req.setAttribute("errors", errors);
+			req.setAttribute("form", formUser);
+			return "f:/adminjsps/admin/user/edit.jsp";
+			}
+		}
+		//4.用户名和邮箱都不是现在的，提示重新输入
+		if(!befoEmail.equals(formUser.getEmail())){
+			int value=adminUserService.findByEmail(formUser);//判断是否存在
+			if(value==1){
+			errors.put("email", "用户名已经存在，请重新输入！");
+			
+			formUser.setUid(uid);
+			req.setAttribute("errors", errors);
+			req.setAttribute("form", formUser);
+			return "f:/adminjsps/admin/user/edit.jsp";
+			}
+		}
+		
+		
+		//5. 使用service完成业务
+		adminUserService.editUserById(formUser,uid);
+		//6. 保存成功信息，转发到msg.jsp显示
 		req.setAttribute("msg", "修改用户信息成功！");
 		req.setAttribute("code", "success");
 		return "f:/adminjsps/admin/user/msg.jsp";
@@ -307,4 +347,133 @@ public class AdminUserServlet extends BaseServlet {
 		req.setAttribute("code", "success");
 		return "f:/adminjsps/admin/user/msg.jsp";
 	}
+	
+	
+	
+	/**
+	 * 添加店铺准备
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String addStorePre(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String uid=req.getParameter("uid");
+		
+		List<Category> parents=new ArrayList<Category>();
+		parents=adminStoreService.findCategory();//查询所有的一级分类
+//		req.setAttribute("parents", parents);//保存一级分类信息
+		req.getSession().setAttribute("parents", parents);
+		req.setAttribute("uid", uid);
+		return "f:/adminjsps/admin/user/addStore.jsp";
+		
+	}
+	/**
+	 * 添加店铺
+	 * 1.封装表单数据到User对象
+	 * 2. 校验之, 如果校验失败，保存错误信息，返回到add.jsp显示
+	 * 3. 使用service完成业务
+	 * 4. 保存成功信息，转发到msg.jsp显示
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String addStore(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		//1. 封装表单数据到store对象
+		
+		String uid=req.getParameter("uid");
+		User user=new User();
+		user.setUid(uid);
+		
+		String sname=req.getParameter("sname");
+		Store store=new Store();
+		store.setSname(sname);
+		
+		String cid=req.getParameter("cid");
+		Category category=new Category();
+		category.setCid(cid);
+		
+		store.setCategory(category);
+		store.setUser(user);
+		
+		//2. 校验之, 如果校验失败，保存错误信息，返回到add.jsp显示
+		Map<String,String> errors = validateAddStore(store);//添加店铺校验
+		
+		if(errors.size() > 0) {
+			req.setAttribute("store", store);
+			req.setAttribute("errors", errors);
+			return "f:/adminjsps/admin/user/addStore.jsp";
+		}
+		//3. 使用service完成业务
+		store.setSid(CommonUtils.uuid());
+		
+		adminUserService.addStore(store);
+		
+		//4. 保存成功信息，转发到msg.jsp显示
+		req.setAttribute("msg", "添加店铺信息成功！");
+		req.setAttribute("code", "success");
+		return "f:/adminjsps/admin/user/msg.jsp";
+	}
+	
+	/*
+	 * 添加店铺校验
+	 * 对表单的字段进行逐个校验，如果有错误，使用当前字段名称为key，错误信息为value，保存到map中
+	 * 返回map
+	 */
+	private Map<String,String> validateAddStore(Store store) {
+		Map<String,String> errors = new HashMap<String,String>();
+		
+		//1.店铺名不同名校验，同名则显示错误
+		String sname=store.getSname();
+		if(sname == null || sname.trim().isEmpty()) {
+			errors.put("sname", "店铺名不能为空！");
+		} else if(sname.length() < 2 || sname.length() > 20) {
+			errors.put("sname", "店铺名长度必须在2~20之间！");
+		} else if(!adminStoreService.ajaxValidateSname(sname)) {
+			errors.put("sname", "店铺名已存在！");
+		}
+	
+		//2.店铺类型为空，不通过
+		String cid=store.getCategory().getCid();
+		if(cid== null || cid.trim().isEmpty()) {
+			errors.put("cid", "类型不能为空！");
+		} 
+		return errors;
+	}
+	
+	
+//	/**
+//	 * 以店铺sid进行删除
+//	 *   deleteUserById&uid=${user.uid }
+//	 * 1.获取用户uid
+//	 * 2.删除该用户
+//	 * 3.保存成功信息，转发到msg.jsp显示
+//	 * @param req
+//	 * @param resp
+//	 * @return
+//	 * @throws ServletException
+//	 * @throws IOException
+//	 */
+//	public String deleteStoreById(HttpServletRequest req, HttpServletResponse resp)
+//			throws ServletException, IOException {
+//		
+//		 // 1.获取获取用户id
+//		String uid = req.getParameter("uid");
+//		
+//		//2。查找用户的店铺sid
+//		String sid=adminUserService.findStore(uid);
+//		 //3.删除该用户的店铺  ，以及设置修改用户开店状态为0
+//		adminStoreService.deleteUserById(sid);
+//		 // 3.保存成功信息，转发到msg.jsp显示
+//		req.setAttribute("msg", "封店状态成功！");
+//		req.setAttribute("code", "success");
+//		return "f:/adminjsps/admin/user/msg.jsp";
+//	}
 }
+
+

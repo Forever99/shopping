@@ -98,19 +98,21 @@
 				<td width="150px;">${user.loginname }</td>
 				<td width="150px;">${user.loginpass }</td>
 				<td width="150px;">${user.email }</td>
-				<td width="150px;">${user.isStore}</td>
-				<%-- 
+				<%-- <td width="150px;">${user.isStore}</td>--%>
+			
     		<c:choose>
     		<c:when test="${user.isStore==1 }">
-    		<td width="200px;">开店状态</td>
+    		<td width="200px;">已经开店 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+    		
+    		<%--	<td width="200px;">已经开店 &nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='/admin/AdminUserServlet?method=deleteStoreById&uid=${user.uid }'/>">封店</a></td> --%>
     		</c:when>
     		
-    		<c:otherwise>
-    		<td width="200px;">未开店状态</td>
+    		<c:otherwise>                                           
+    		<td width="200px;">未开店  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='/admin/AdminUserServlet?method=addStorePre&uid=${user.uid }'/>">开店</a></td>
     		</c:otherwise>
     		
     		</c:choose>
-    		--%>
+    	
 				<td width="150px;"><a
 					href="<c:url value='/admin/AdminUserServlet?method=editUserByIdPre&uid=${user.uid }'/>">修改</a>
 					<a onclick="return confirm('您是否真要删除该用户？')"

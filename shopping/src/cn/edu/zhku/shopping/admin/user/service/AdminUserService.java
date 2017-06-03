@@ -3,8 +3,11 @@ package cn.edu.zhku.shopping.admin.user.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+
 import cn.edu.zhku.shopping.admin.user.dao.AdminUserDao;
 import cn.edu.zhku.shopping.pager.PageBean;
+import cn.edu.zhku.shopping.store.store.domain.Store;
 import cn.edu.zhku.shopping.user.domain.User;
 import cn.itcast.commons.CommonUtils;
 
@@ -74,9 +77,9 @@ public class AdminUserService {
 	 * 修改用户信息
 	 * @param formUser
 	 */
-	public void editUserById(User formUser) {
+	public void editUserById(User formUser,String uid) {
 		try {
-			adminUserDao.editUserById(formUser);
+			adminUserDao.editUserById(formUser,uid);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -112,4 +115,58 @@ public class AdminUserService {
 			throw new RuntimeException(e);
 		}
 	}
+
+	/**
+	 * 以登录名进行判断是否存在该用户
+	 * @param formUser
+	 * @return
+	 */
+	public int findByLoginname(User formUser) {
+		try {
+			return adminUserDao.findByLoginname(formUser);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 以邮箱进行判断是否存在该用户
+	 * @param formUser
+	 * @return
+	 */
+	public int findByEmail(User formUser) {
+		try {
+			return adminUserDao.findByEmail(formUser);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 添加店铺
+	 * @param store
+	 */
+	public void addStore(Store store) {
+		try {
+			adminUserDao.addStore(store);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	/**
+	 * 找店铺sid
+	 * @param uid
+	 * @return
+	 */
+	public String findStore(String uid) {
+		try {
+			return adminUserDao.findStore(uid);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+
 }
